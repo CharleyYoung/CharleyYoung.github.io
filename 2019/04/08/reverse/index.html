@@ -103,10 +103,12 @@
 <meta property="og:site_name" content="Charley_Young">
 <meta property="og:description" content="今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-08T10:54:16.449Z">
+<meta property="og:image" content="http://yoursite.com/reverse/vegetable.jpeg">
+<meta property="og:updated_time" content="2019-04-08T11:02:43.687Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于java判断整型是否溢出的一点心得">
 <meta name="twitter:description" content="今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录">
+<meta name="twitter:image" content="http://yoursite.com/reverse/vegetable.jpeg">
 
 
 
@@ -332,7 +334,7 @@
                 
               
 
-              <time title="创建时间：2019-04-08 17:50:30 / 修改时间：19:54:16" itemprop="dateCreated datePublished" datetime="2019-04-08T17:50:30+09:00">2019-04-08</time>
+              <time title="创建时间：2019-04-08 17:50:30 / 修改时间：20:02:43" itemprop="dateCreated datePublished" datetime="2019-04-08T17:50:30+09:00">2019-04-08</time>
             
 
             
@@ -380,6 +382,7 @@
 <h2 id="寻找方法"><a href="#寻找方法" class="headerlink" title="寻找方法"></a>寻找方法</h2><p>在知道不能利用Exception来判断溢出之后开始寻找其他的解决方法，一开始想用if-else语句来判断是否溢出，但是既然存在回卷的问题，if语句当中的判断条件并不能单纯的求和后比较，因此陷入了瓶颈。后来在查阅资料之后得到了一种不错的方法，即提前判断本次运算是否会超过Integer.MAX_VALUE，话不多说，直接看代码</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> origin = x,result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (origin != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (result &gt; Integer.MAX_VALUE/<span class="number">10</span> || </span><br><span class="line">            (result == Integer.MAX_VALUE / <span class="number">10</span> &amp;&amp; origin%<span class="number">10</span> &gt; <span class="number">7</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (result &lt; Integer.MIN_VALUE/<span class="number">10</span> || </span><br><span class="line">            (result == Integer.MIN_VALUE / <span class="number">10</span> &amp;&amp; origin%<span class="number">10</span> &lt; -<span class="number">8</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            result = result * <span class="number">10</span> + origin % <span class="number">10</span>;</span><br><span class="line">            origin = origin / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 <p>为了便于解释，我们假设result是一个正数<br>1.如果$result=result\times10+origin\%10$会导致溢出，那么必有$result\geqslant\frac{Integer.Max_Value}{10}$<br>2.如果$result&gt;\frac{Interger.MAX_VALUE}{10}$那么$result\times10+origin\%10$一定会溢出<br><strong>3.如果$result==\frac{Interger.MAX_VALUE}{10}$,那么只要$origin\%10&gt;7$就会导致溢出（当result为负数是条件为$origin\%10&lt;-8$就会导致溢出）</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="\reverse\vegetable.jpeg" alt="picture"></p>
 
       
     </div>
@@ -529,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次尝试"><span class="nav-number">2.</span> <span class="nav-text">第一次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找方法"><span class="nav-number">3.</span> <span class="nav-text">寻找方法</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次尝试"><span class="nav-number">2.</span> <span class="nav-text">第一次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找方法"><span class="nav-number">3.</span> <span class="nav-text">寻找方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
