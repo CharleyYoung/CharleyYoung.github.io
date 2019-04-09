@@ -96,17 +96,19 @@
 
 
 
-  <meta name="description" content="本篇没有主题，主要记录在开通博客之后对于页面美化相关的配置学习记录以及测试">
+  <meta name="description" content="今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随笔">
-<meta property="og:url" content="http://yoursite.com/2019/04/03/first-blog/index.html">
+<meta property="og:title" content="关于java判断整型是否溢出的一点心得">
+<meta property="og:url" content="http://yoursite.com/2019/04/09/reverse/index.html">
 <meta property="og:site_name" content="Charley_Young">
-<meta property="og:description" content="本篇没有主题，主要记录在开通博客之后对于页面美化相关的配置学习记录以及测试">
+<meta property="og:description" content="今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-03T12:42:00.265Z">
+<meta property="og:image" content="http://yoursite.com/2019/04/09/reverse/vegetable.jpeg">
+<meta property="og:updated_time" content="2019-04-09T08:28:34.819Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="随笔">
-<meta name="twitter:description" content="本篇没有主题，主要记录在开通博客之后对于页面美化相关的配置学习记录以及测试">
+<meta name="twitter:title" content="关于java判断整型是否溢出的一点心得">
+<meta name="twitter:description" content="今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/09/reverse/vegetable.jpeg">
 
 
 
@@ -114,7 +116,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/03/first-blog/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/09/reverse/">
 
 
 
@@ -124,7 +126,7 @@
   };
 </script>
 
-  <title>随笔 | Charley_Young</title>
+  <title>关于java判断整型是否溢出的一点心得 | Charley_Young</title>
   
 
 
@@ -289,7 +291,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/03/first-blog/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/reverse/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Charley_Young">
@@ -306,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">随笔
+          <h1 class="post-title" itemprop="name headline">关于java判断整型是否溢出的一点心得
 
               
             
@@ -332,7 +334,7 @@
                 
               
 
-              <time title="创建时间：2019-04-03 17:50:23 / 修改时间：21:42:00" itemprop="dateCreated datePublished" datetime="2019-04-03T17:50:23+09:00">2019-04-03</time>
+              <time title="创建时间：2019-04-09 17:27:12 / 修改时间：17:28:34" itemprop="dateCreated datePublished" datetime="2019-04-09T17:27:12+09:00">2019-04-09</time>
             
 
             
@@ -371,10 +373,16 @@
       
 
       
-        <p>本篇没有主题，主要记录在开通博客之后对于页面美化相关的配置学习记录以及测试</p>
+        <p>今天在做leetcode上“整数反转”题目的时候，由于对整型认识不够清晰犯下了不少低级错误，故此将了解到的一些知识留作记录</p>
 <a id="more"></a>
-<h2 id="About"><a href="#About" class="headerlink" title="About"></a>About</h2><p>尝试再往博客上推送一个markdown文件，测试一下页面显示会有什么不同<br>测试结果，hexo会按照时间线排序将后上传的markdown纵向排版</p>
-<h2 id="next的个性化定制"><a href="#next的个性化定制" class="headerlink" title="next的个性化定制"></a>next的个性化定制</h2><p>在成功搭建了个人博客之后开始思考如何美化界面，找到了下面这个参考<a href="https://www.jianshu.com/p/efbeddc5eb19" target="_blank" rel="noopener">Hexo+Next个人博客主题优化</a><br>当然，在这之前还得先熟悉一下hexo本身的各种配置，直接参考官方网站<a href="https://hexo.io/zh-cn/docs/configuration.html" target="_blank" rel="noopener">hexo</a></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>给出一个 32 位的有符号整数，你需要将这个整数中每位上的数字进行反转。假设我们的环境只能存储得下 32 位的有符号整数，则其数值范围为 [-$2^{31}$,  $2^{31}$ − 1]。请根据这个假设，如果反转后整数溢出那么就返回 0。</p>
+<h2 id="第一次尝试"><a href="#第一次尝试" class="headerlink" title="第一次尝试"></a>第一次尝试</h2><p>在最初的尝试当中，我曾设想整型的越界会触发Exception从而捕获该Exception即可，下面是当时想法的代码  </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> origin = x,result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (origin != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            result = result * <span class="number">10</span> + origin % <span class="number">10</span>;</span><br><span class="line">            origin = origin / <span class="number">10</span>;</span><br><span class="line">        &#125;<span class="keyword">catch</span>(Exception e)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在提交代码之后得到了<font color="red">解答错误</font>的结果，对于<strong>1534236469</strong>这个输入，正确输出应为<strong>0</strong>，但是上述代码输出为<strong>1056389759</strong> 。分析之后得出是因为当result的大小超过了Integer.MAX_VALUE之后并不会抛出Exception，而是会产生上溢出回卷，从而导致结果的错误</p>
+<h2 id="寻找方法"><a href="#寻找方法" class="headerlink" title="寻找方法"></a>寻找方法</h2><p>在知道不能利用Exception来判断溢出之后开始寻找其他的解决方法，一开始想用if-else语句来判断是否溢出，但是既然存在回卷的问题，if语句当中的判断条件并不能单纯的求和后比较，因此陷入了瓶颈。后来在查阅资料之后得到了一种不错的方法，即提前判断本次运算是否会超过Integer.MAX_VALUE，话不多说，直接看代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">reverse</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> origin = x,result = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span> (origin != <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (result &gt; Integer.MAX_VALUE/<span class="number">10</span> || </span><br><span class="line">            (result == Integer.MAX_VALUE / <span class="number">10</span> &amp;&amp; origin%<span class="number">10</span> &gt; <span class="number">7</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (result &lt; Integer.MIN_VALUE/<span class="number">10</span> || </span><br><span class="line">            (result == Integer.MIN_VALUE / <span class="number">10</span> &amp;&amp; origin%<span class="number">10</span> &lt; -<span class="number">8</span>)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            result = result * <span class="number">10</span> + origin % <span class="number">10</span>;</span><br><span class="line">            origin = origin / <span class="number">10</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>为了便于解释，我们假设result是一个正数<br>1.如果$result=result\times10+origin\%10$会导致溢出，那么必有$result\geqslant\frac{Integer.Max_Value}{10}$<br>2.如果$result&gt;\frac{Interger.MAX_VALUE}{10}$那么$result\times10+origin\%10$一定会溢出<br><strong>3.如果$result==\frac{Interger.MAX_VALUE}{10}$,那么只要$origin\%10&gt;7$就会导致溢出（当result为负数是条件为$origin\%10&lt;-8$就会导致溢出）</strong></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2019/04/09/reverse/vegetable.jpeg" alt="picture"></p>
 
       
     </div>
@@ -405,8 +413,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/02/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2019/04/03/first-blog/" rel="next" title="随笔">
+                <i class="fa fa-chevron-left"></i> 随笔
               </a>
             
           </div>
@@ -414,10 +422,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/09/reverse/" rel="prev" title="关于java判断整型是否溢出的一点心得">
-                关于java判断整型是否溢出的一点心得 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -528,7 +532,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#About"><span class="nav-number">1.</span> <span class="nav-text">About</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#next的个性化定制"><span class="nav-number">2.</span> <span class="nav-text">next的个性化定制</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第一次尝试"><span class="nav-number">2.</span> <span class="nav-text">第一次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#寻找方法"><span class="nav-number">3.</span> <span class="nav-text">寻找方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
             
 
           </div>
@@ -705,6 +709,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 
