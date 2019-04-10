@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="记录在做leetcode“最长公共前缀”时的一些心得体会">
+<meta property="og:type" content="article">
+<meta property="og:title" content="prefix">
+<meta property="og:url" content="http://yoursite.com/2019/04/10/prefix/index.html">
+<meta property="og:site_name" content="Charley_Young">
+<meta property="og:description" content="记录在做leetcode“最长公共前缀”时的一些心得体会">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2019/04/10/prefix/vegetable.jpeg">
+<meta property="og:updated_time" content="2019-04-10T09:20:22.968Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="prefix">
+<meta name="twitter:description" content="记录在做leetcode“最长公共前缀”时的一些心得体会">
+<meta name="twitter:image" content="http://yoursite.com/2019/04/10/prefix/vegetable.jpeg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2019/04/10/prefix/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>prefix | Charley_Young</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charley_Young</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/prefix/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charley_Young">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charley_Young">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">prefix
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-04-10 17:42:49 / 修改时间：18:20:22" itemprop="dateCreated datePublished" datetime="2019-04-10T17:42:49+09:00">2019-04-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>记录在做leetcode“最长公共前缀”时的一些心得体会</p>
+<a id="more"></a>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><figure class="highlight accesslog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">编写一个函数来查找字符串数组中的最长公共前缀。</span><br><span class="line">如果不存在公共前缀，返回空字符串 <span class="string">""</span>。</span><br><span class="line">输入只包含<span class="string">[a-z]</span></span><br></pre></td></tr></table></figure>
+<h2 id="初次尝试"><a href="#初次尝试" class="headerlink" title="初次尝试"></a>初次尝试</h2><p>对于这道题，我的思路是以第一个字符串为参考，从中逐个取出字符与后续字符串相应字符位进行比较，直到找到不相同的字符位或者遍历完字符串数组中最短的字符串为止，下面是代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">if</span>(strs.length==<span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;<span class="comment">//什么都没有，直接返回空</span></span><br><span class="line">       StringBuilder lcp = <span class="keyword">new</span> StringBuilder();<span class="comment">//定义一个StringBuilder用来存放当前找到的最长前缀</span></span><br><span class="line">       <span class="keyword">char</span>[][] chars = <span class="keyword">new</span> <span class="keyword">char</span>[strs.length][];<span class="comment">//定义一个二维字符数组，用来存储字符串数组转换成字符的集合</span></span><br><span class="line">       <span class="keyword">int</span> minimum_length= Integer.MAX_VALUE;<span class="comment">//用于保存最短字符串的长度用于遍历</span></span><br><span class="line">       <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;strs.length;i++)&#123;</span><br><span class="line">           chars[i] = strs[i].toCharArray();<span class="comment">//将字符串数组中的元素转换成二维字符数组中对应的一行字符数组</span></span><br><span class="line">           <span class="keyword">if</span>(strs[i].length()&lt;minimum_length)&#123;<span class="comment">//检查当前字符串的长度小于已经找到的最短字符串长度，更改最短字符串长度值</span></span><br><span class="line">               minimum_length = strs[i].length();</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">boolean</span> flag = <span class="keyword">true</span>;</span><br><span class="line">       <span class="keyword">int</span> index = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">char</span> mark;</span><br><span class="line">       <span class="keyword">while</span>(index != minimum_length)&#123;</span><br><span class="line">           mark = chars[<span class="number">0</span>][index];</span><br><span class="line">           <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;strs.length;i++)&#123;</span><br><span class="line">               <span class="keyword">if</span>(chars[i][index]!=mark)&#123;</span><br><span class="line">                   flag = <span class="keyword">false</span>;</span><br><span class="line">                   <span class="keyword">break</span>;</span><br><span class="line">               &#125;</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="keyword">if</span>(!flag) <span class="keyword">break</span>;</span><br><span class="line">           lcp.append(mark);</span><br><span class="line">           index++;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> lcp.toString();</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="惨招打脸"><a href="#惨招打脸" class="headerlink" title="惨招打脸"></a>惨招打脸</h2><p>起初，我在提交的时候对初次代码的内存占用不是很满意，想看看题解能不能给出更好的思路<del>然后我就被吊打了</del>我觉得比较有意思的是以下两种<del>其实是因为一种跟我的思路很像而另一种上学期学过</del>  </p>
+<p><strong>1.水平扫描</strong>  </p>
+<p>想象数组的末尾有一个非常短的字符串， 使用上述方法依旧会进行 S​S​ 次比较。 优化这类情况的一种方法就是水平扫描。 我们从前往后枚举字符串的每一列，先比较每个字符串相同列上的字符（即不同字符串相同下标的字符）然后再进行对下一列的比较。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; strs[<span class="number">0</span>].length() ; i++)&#123;</span><br><span class="line">        <span class="keyword">char</span> c = strs[<span class="number">0</span>].charAt(i);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; strs.length; j ++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i == strs[j].length() || strs[j].charAt(i) != c)</span><br><span class="line">                <span class="keyword">return</span> strs[<span class="number">0</span>].substring(<span class="number">0</span>, i);             </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> strs[<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong><del>为什么会变成这样，明明思路都是一样的，为什么差距会这么大</del></strong><br><del>不过最后内存的占用都差不多，运行效率上都差不多</del></p>
+<p><strong>2.分治</strong>  </p>
+<p>仔细观察题目能发现：<br>$LCP(S<em>1…S_n)=LCP(LCP(S_1…S_k),LCP(S</em>{k+1}…S_n))$,其中$LCP(S_1…S_n)$是字符串$[S_1…S_n]$的最长公共前缀， $1&lt;k&lt;n$</p>
+<p>利用上述推论我们可以这么设想，对于原问题$LCP(S<em>i…S_j)$可以将问题分成$LCP(S_i…S</em>{mid})$和$LCP(S_{mid+1}…S_j)$ ,其中$mid=\frac{i+j}{2}$。这样，我们利用子问题的解<code>lcpLeft</code>和<code>lcpRight</code>构造原问题的解，从头挨个比较<code>lcpLeft</code>和<code>lcpRight</code>中的字符，直到不能再匹配为止。代码展示如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (strs == <span class="keyword">null</span> || strs.length == <span class="number">0</span>) <span class="keyword">return</span> <span class="string">""</span>;    </span><br><span class="line">        <span class="keyword">return</span> longestCommonPrefix(strs, <span class="number">0</span> , strs.length - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">private</span> String <span class="title">longestCommonPrefix</span><span class="params">(String[] strs, <span class="keyword">int</span> l, <span class="keyword">int</span> r)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (l == r) &#123;</span><br><span class="line">        <span class="keyword">return</span> strs[l];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (l + r)/<span class="number">2</span>;</span><br><span class="line">        String lcpLeft =   longestCommonPrefix(strs, l , mid);</span><br><span class="line">        String lcpRight =  longestCommonPrefix(strs, mid + <span class="number">1</span>,r);</span><br><span class="line">        <span class="keyword">return</span> commonPrefix(lcpLeft, lcpRight);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">String <span class="title">commonPrefix</span><span class="params">(String left,String right)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> min = Math.min(left.length(), right.length());       </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; min; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> ( left.charAt(i) != right.charAt(i) )</span><br><span class="line">            <span class="keyword">return</span> left.substring(<span class="number">0</span>, i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> left.substring(<span class="number">0</span>, min);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设我们有n个长度为m的字符串</p>
+<ul>
+<li><p>时间复杂度递推公式<br>$T(n)=T(\frac{n}{2})+O(m)$</p>
+</li>
+<li><p>空间复杂度<br>$O(m\cdot\log(n))$</p>
+</li>
+</ul>
+<p><del>我tm上学期算法课学了个啥</del></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2019/04/10/prefix/vegetable.jpeg" alt="picture"></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/09/reverse/" rel="next" title="关于java判断整型是否溢出的一点心得">
+                <i class="fa fa-chevron-left"></i> 关于java判断整型是否溢出的一点心得
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charley_Young</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初次尝试"><span class="nav-number">2.</span> <span class="nav-text">初次尝试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#惨招打脸"><span class="nav-number">3.</span> <span class="nav-text">惨招打脸</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charley_Young</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fbacd809b0f5f2803304',
+    clientSecret: '68c17eb0caebd4af73d39cec8a87daa15e79c9ae',
+    repo: 'charleyyoung.github.io',
+    owner: 'CharleyYoung',
+    admin: ['CharleyYoung'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
