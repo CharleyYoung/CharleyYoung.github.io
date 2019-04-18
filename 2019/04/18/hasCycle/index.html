@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/04/18/hasCycle/circularlinkedlist_test2.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/18/hasCycle/circularlinkedlist_test3.png">
 <meta property="og:image" content="http://yoursite.com/2019/04/18/hasCycle/vegetable.jpeg">
-<meta property="og:updated_time" content="2019-04-18T12:18:35.264Z">
+<meta property="og:updated_time" content="2019-04-18T12:24:02.771Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode腾讯精选50题“环形链表”">
 <meta name="twitter:description" content="记录leetcode上腾讯精选50题“环形链表”的思路">
@@ -337,7 +337,7 @@
                 
               
 
-              <time title="创建时间：2019-04-18 20:37:38 / 修改时间：21:18:35" itemprop="dateCreated datePublished" datetime="2019-04-18T20:37:38+09:00">2019-04-18</time>
+              <time title="创建时间：2019-04-18 20:37:38 / 修改时间：21:24:02" itemprop="dateCreated datePublished" datetime="2019-04-18T20:37:38+09:00">2019-04-18</time>
             
 
             
@@ -387,8 +387,7 @@
 <p><img src="/2019/04/18/hasCycle/circularlinkedlist_test2.png" alt="list2"></p>
 <p><strong>示例3：</strong><br><figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：<span class="attr">head</span> = [<span class="number">1</span>], <span class="attr">pos</span> = -<span class="number">1</span></span><br><span class="line">输出：<span class="literal">false</span></span><br><span class="line">解释：链表中没有环。</span><br></pre></td></tr></table></figure></p>
 <p><img src="/2019/04/18/hasCycle/circularlinkedlist_test3.png" alt="list1"></p>
-<font color="red">**进阶：**
-你能用 O(1)（即，常量）内存解决此问题吗？</font>
+<font color="red">进阶：你能用 O(1)（即，常量）内存解决此问题吗？</font>
 
 <h2 id="初次尝试"><a href="#初次尝试" class="headerlink" title="初次尝试"></a>初次尝试</h2><p>由于含有环的链表会末尾结点会指向链表其他结点，而不含环的链表末尾结点则没有任何指向，故含有环的链表必定出现重复元素，所以采用一个额外数组来存储链表元素，每一次取下一个结点的值，如果出现重复，即可判定链表含有环。实现代码如下</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * class ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) &#123;</span></span><br><span class="line"><span class="comment"> *         val = x;</span></span><br><span class="line"><span class="comment"> *         next = null;</span></span><br><span class="line"><span class="comment"> *     &#125;</span></span><br><span class="line"><span class="comment"> * &#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasCycle</span><span class="params">(ListNode head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="keyword">null</span> || head.next==<span class="keyword">null</span>) <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        ArrayList&lt;ListNode&gt; arrayList = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">while</span>(head!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arrayList.indexOf(head)==-<span class="number">1</span>)&#123;</span><br><span class="line">                arrayList.add(head);</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            head = head.next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
