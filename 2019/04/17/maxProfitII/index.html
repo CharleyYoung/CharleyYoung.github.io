@@ -98,15 +98,15 @@
 
   <meta name="description" content="记录leetcode上腾讯精选50题“买卖股票的最佳时期II”的思路深刻感觉自己思路的狭窄">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode腾讯精选50题maxProfitII">
+<meta property="og:title" content="leetcode腾讯精选50题“买卖股票的最佳时期II”">
 <meta property="og:url" content="http://yoursite.com/2019/04/17/maxProfitII/index.html">
 <meta property="og:site_name" content="Charley_Young">
 <meta property="og:description" content="记录leetcode上腾讯精选50题“买卖股票的最佳时期II”的思路深刻感觉自己思路的狭窄">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/04/17/maxProfitII/vegetable.jpeg">
-<meta property="og:updated_time" content="2019-04-18T11:35:14.520Z">
+<meta property="og:updated_time" content="2019-04-18T11:45:51.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode腾讯精选50题maxProfitII">
+<meta name="twitter:title" content="leetcode腾讯精选50题“买卖股票的最佳时期II”">
 <meta name="twitter:description" content="记录leetcode上腾讯精选50题“买卖股票的最佳时期II”的思路深刻感觉自己思路的狭窄">
 <meta name="twitter:image" content="http://yoursite.com/2019/04/17/maxProfitII/vegetable.jpeg">
 
@@ -126,7 +126,7 @@
   };
 </script>
 
-  <title>leetcode腾讯精选50题maxProfitII | Charley_Young</title>
+  <title>leetcode腾讯精选50题“买卖股票的最佳时期II” | Charley_Young</title>
   
 
 
@@ -308,7 +308,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode腾讯精选50题maxProfitII
+          <h1 class="post-title" itemprop="name headline">leetcode腾讯精选50题“买卖股票的最佳时期II”
 
               
             
@@ -351,7 +351,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-18 20:35:14" itemprop="dateModified" datetime="2019-04-18T20:35:14+09:00">2019-04-18</time>
+                <time title="修改时间：2019-04-18 20:45:51" itemprop="dateModified" datetime="2019-04-18T20:45:51+09:00">2019-04-18</time>
               
             
           </span>
@@ -399,6 +399,7 @@
 <p>时间复杂度为$O(n)$<br>空间复杂度为$O(1)$</p>
 <h2 id="我怎么就没想到呢"><a href="#我怎么就没想到呢" class="headerlink" title="我怎么就没想到呢"></a>我怎么就没想到呢</h2><p>我们可以假想一下，假设股票是连续上涨的，我们把上一部分的思路变化一下，只要第n天的股票价格比第n-1天高，我们就在第n天卖出股票，但是由于股票是连续上涨的，所以第n+1天的股票价格会比第n天高，所以我们在第n天再买入股票，然后第n+1天再卖出，以此类推。最后，<strong>我们将有效地使用峰值和谷值，但我们不需要跟踪峰值和谷值对应的成本以及最大利润，但我们可以直接继续增加加数组的连续数字之间的差值，如果第二个数字大于第一个数字，我们获得的总和将是最大利润。这种方法将简化解决方案。</strong>  示例代码如下  </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span>[] prices)</span> </span>&#123;</span><br><span class="line">       <span class="keyword">int</span> maxprofit = <span class="number">0</span>;</span><br><span class="line">       <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; prices.length; i++) &#123;</span><br><span class="line">           <span class="keyword">if</span> (prices[i] &gt; prices[i - <span class="number">1</span>])</span><br><span class="line">               maxprofit += prices[i] - prices[i - <span class="number">1</span>];</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">return</span> maxprofit;</span><br></pre></td></tr></table></figure>
+<p>时间复杂度为$O(n)$<br>空间复杂度为$O(1)$</p>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><img src="/2019/04/17/maxProfitII/vegetable.jpeg" alt="picture"></p>
 
       
@@ -439,6 +440,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/hasCycle/" rel="prev" title="leetcode腾讯精选50题环形链表">
+                leetcode腾讯精选50题环形链表 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -511,7 +516,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-count">7</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
