@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Charley_Young">
 <meta property="og:description" content="记录leetcode上腾讯精选50题“螺旋矩阵”的思路人生苦短我用Python">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-26T12:41:22.782Z">
+<meta property="og:updated_time" content="2019-04-26T12:47:56.437Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="leetcode腾讯精选50题“螺旋矩阵”">
 <meta name="twitter:description" content="记录leetcode上腾讯精选50题“螺旋矩阵”的思路人生苦短我用Python">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="创建时间：2019-04-26 20:05:17 / 修改时间：21:41:22" itemprop="dateCreated datePublished" datetime="2019-04-26T20:05:17+09:00">2019-04-26</time>
+              <time title="创建时间：2019-04-26 20:05:17 / 修改时间：21:47:56" itemprop="dateCreated datePublished" datetime="2019-04-26T20:05:17+09:00">2019-04-26</time>
             
 
             
@@ -376,7 +376,7 @@
 <h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight excel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含 m x <span class="built_in">n</span> 个元素的矩阵（m 行, <span class="built_in">n</span> 列），请按照顺时针螺旋顺序，返回矩阵中的所有元素。</span><br></pre></td></tr></table></figure>
 <p><strong>示例1：</strong><br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment"> <span class="comment">[ 1, 2, 3 ]</span>,</span></span><br><span class="line"><span class="comment"> <span class="comment">[ 4, 5, 6 ]</span>,</span></span><br><span class="line"><span class="comment"> <span class="comment">[ 7, 8, 9 ]</span></span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line">输出: <span class="comment">[1,2,3,6,9,8,7,4,5]</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>示例2：</strong><br><figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">输入:</span><br><span class="line"><span class="comment">[</span></span><br><span class="line"><span class="comment">  <span class="comment">[1, 2, 3, 4]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[5, 6, 7, 8]</span>,</span></span><br><span class="line"><span class="comment">  <span class="comment">[9,10,11,12]</span></span></span><br><span class="line"><span class="comment">]</span></span><br><span class="line">输出: <span class="comment">[1,2,3,4,8,12,11,10,9,5,6,7]</span></span><br></pre></td></tr></table></figure></p>
-<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>不管是顺时针还是逆时针，本题的本质还是遍历数组的问题，故对于给定的matrix，可以采用两个标量$i$和$j$来执行数组的遍历，同时，为了避免出现重复访问的情况，每一个访问过的元素我们都置成$Integer.MAX_VALUE$但是顺时针螺旋顺序遍历的问题就在于什么时候“拐弯”，需要考虑的情况大体上有以下几种<br>考虑以下的输入  </p>
+<h2 id="解法思路"><a href="#解法思路" class="headerlink" title="解法思路"></a>解法思路</h2><p>不管是顺时针还是逆时针，本题的本质还是遍历数组的问题，故对于给定的matrix，可以采用两个标量$i$和$j$来执行数组的遍历，同时，为了避免出现重复访问的情况，每一个访问过的元素我们都置成Integer.MAX_VALUE但是顺时针螺旋顺序遍历的问题就在于什么时候“拐弯”，需要考虑的情况大体上有以下几种<br>考虑以下的输入  </p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[</span><br><span class="line">  [<span class="number">1</span> , <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>],</span><br><span class="line">  [<span class="number">5</span> , <span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>],</span><br><span class="line">  [<span class="number">9</span> ,<span class="number">10</span>,<span class="number">11</span>,<span class="number">12</span>],</span><br><span class="line">  [<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
 <p><strong>1.$j$遍历到最后一个元素或遇到已经被访问过的元素</strong><br>通过上面的输入我们可以看到，当matrix走到$4$，$7$的时候，都需要“向下”转，也就是之后需要保持$j$的标识不变，$i$每一次增1来取值</p>
 <p><strong>2.$i$遍历到最后一个元素或遇到已经被访问过的元素</strong><br>通过上面的输入我们可以看到，当matrix走到$16$，$11$的时候，都需要“向左”转，也就是之后需要保持$i$的标识不变，$j$每一次减1来取值  </p>
