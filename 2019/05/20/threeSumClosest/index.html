@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="记录leetcode上腾讯精选50题“最接近的三数之和”的思路">
+  <meta name="description" content="记录leetcode上腾讯精选50题“最接近的三数之和”和“三数之和”的思路">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode腾讯精选50题“最接近的三数之和”">
+<meta property="og:title" content="leetcode腾讯精选50题“最接近的三数之和”和“三数之和”">
 <meta property="og:url" content="http://yoursite.com/2019/05/20/threeSumClosest/index.html">
 <meta property="og:site_name" content="Charley_Young">
-<meta property="og:description" content="记录leetcode上腾讯精选50题“最接近的三数之和”的思路">
+<meta property="og:description" content="记录leetcode上腾讯精选50题“最接近的三数之和”和“三数之和”的思路">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-20T09:23:14.824Z">
+<meta property="og:updated_time" content="2019-05-20T10:14:07.619Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode腾讯精选50题“最接近的三数之和”">
-<meta name="twitter:description" content="记录leetcode上腾讯精选50题“最接近的三数之和”的思路">
+<meta name="twitter:title" content="leetcode腾讯精选50题“最接近的三数之和”和“三数之和”">
+<meta name="twitter:description" content="记录leetcode上腾讯精选50题“最接近的三数之和”和“三数之和”的思路">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>leetcode腾讯精选50题“最接近的三数之和” | Charley_Young</title>
+  <title>leetcode腾讯精选50题“最接近的三数之和”和“三数之和” | Charley_Young</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode腾讯精选50题“最接近的三数之和”
+          <h1 class="post-title" itemprop="name headline">leetcode腾讯精选50题“最接近的三数之和”和“三数之和”
 
               
             
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="创建时间：2019-05-20 18:03:23 / 修改时间：18:23:14" itemprop="dateCreated datePublished" datetime="2019-05-20T18:03:23+09:00">2019-05-20</time>
+              <time title="创建时间：2019-05-20 18:03:23 / 修改时间：19:14:07" itemprop="dateCreated datePublished" datetime="2019-05-20T18:03:23+09:00">2019-05-20</time>
             
 
             
@@ -371,9 +371,9 @@
       
 
       
-        <p>记录leetcode上腾讯精选50题“最接近的三数之和”的思路</p>
+        <p>记录leetcode上腾讯精选50题“最接近的三数之和”和“三数之和”的思路</p>
 <a id="more"></a>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定一个包括 n 个整数的数组 nums 和 一个目标值 target。</span><br><span class="line">找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。</span><br><span class="line">假定每组输入只存在唯一答案。</span><br><span class="line">例如，给定数组 nums = [<span class="number">-1</span>，<span class="number">2</span>，<span class="number">1</span>，<span class="number">-4</span>], 和 target = <span class="number">1.</span></span><br><span class="line">与 target 最接近的三个数的和为 <span class="number">2.</span> (<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure>
+<h1 id="最接近的三数之和"><a href="#最接近的三数之和" class="headerlink" title="最接近的三数之和"></a>最接近的三数之和</h1><h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定一个包括 n 个整数的数组 nums 和 一个目标值 target。</span><br><span class="line">找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。</span><br><span class="line">假定每组输入只存在唯一答案。</span><br><span class="line">例如，给定数组 nums = [<span class="number">-1</span>，<span class="number">2</span>，<span class="number">1</span>，<span class="number">-4</span>], 和 target = <span class="number">1.</span></span><br><span class="line">与 target 最接近的三个数的和为 <span class="number">2.</span> (<span class="number">-1</span> + <span class="number">2</span> + <span class="number">1</span> = <span class="number">2</span>).</span><br></pre></td></tr></table></figure>
 <h2 id="总之暴力法一定可以！"><a href="#总之暴力法一定可以！" class="headerlink" title="总之暴力法一定可以！"></a>总之暴力法一定可以！</h2><p>由于要找的目标为一个三元组，所以可以用三重循环找出数组中所有的三元组来求解并取其中最优的一组，python代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; int:</span></span><br><span class="line">        <span class="keyword">if</span> len(nums) &lt;<span class="number">3</span>:</span><br><span class="line">            bestSum=<span class="number">0</span></span><br><span class="line">            <span class="keyword">for</span> i <span class="keyword">in</span> nums:</span><br><span class="line">                bestSum+=i</span><br><span class="line">                <span class="keyword">return</span> bestSum</span><br><span class="line">        minDis=abs(target-(nums[<span class="number">0</span>]+nums[<span class="number">1</span>]+nums[<span class="number">2</span>]))</span><br><span class="line">        bestSum=nums[<span class="number">0</span>]+nums[<span class="number">1</span>]+nums[<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(nums)<span class="number">-2</span>,<span class="number">1</span>):</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(i+<span class="number">1</span>,len(nums)<span class="number">-1</span>,<span class="number">1</span>):</span><br><span class="line">                <span class="keyword">for</span> k <span class="keyword">in</span> range(j+<span class="number">1</span>,len(nums),<span class="number">1</span>):</span><br><span class="line">                    currentSum=nums[i]+nums[j]+nums[k]</span><br><span class="line">                    currentDis=abs(target-currentSum)</span><br><span class="line">                    <span class="keyword">if</span> currentDis&lt;minDis:</span><br><span class="line">                        minDis=currentDis</span><br><span class="line">                        bestSum=currentSum</span><br><span class="line">        <span class="keyword">return</span> bestSum</span><br></pre></td></tr></table></figure>
 <p>但是想也想得到怎么可能暴力法能过<del>超出时间限制</del></p>
@@ -381,6 +381,12 @@
 <p>1.首先确定一个$i$从第一个元素遍历到倒数第二个元素<br>2.确定一个变量left指向第i+1个元素，确定变量right指向数组最后一个元素<br>3.如果currentSum比target要大，right向左移动缩小和，反之left向右移动增大和，如果刚好等于target，无疑是找到了答案</p>
 <p>python实现代码如下</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums, target)</span>:</span></span><br><span class="line">        nums=sorted(nums)</span><br><span class="line">        bestSum=nums[<span class="number">0</span>]+nums[<span class="number">1</span>]+nums[<span class="number">2</span>]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,len(nums)<span class="number">-2</span>,<span class="number">1</span>):</span><br><span class="line">            left,right=i+<span class="number">1</span>,len(nums)<span class="number">-1</span></span><br><span class="line">            <span class="keyword">while</span> left&lt;right:</span><br><span class="line">                currentSum=nums[i]+nums[left]+nums[right]</span><br><span class="line">                <span class="keyword">if</span> abs(target-currentSum)&lt;abs(target-bestSum):</span><br><span class="line">                    bestSum=currentSum</span><br><span class="line">                <span class="keyword">if</span> currentSum&lt;target:</span><br><span class="line">                    left+=<span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> currentSum&gt;target:</span><br><span class="line">                    right-=<span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    <span class="keyword">return</span> currentSum</span><br><span class="line">        <span class="keyword">return</span> bestSum</span><br></pre></td></tr></table></figure>
+<h1 id="三数之和"><a href="#三数之和" class="headerlink" title="三数之和"></a>三数之和</h1><h2 id="问题描述-1"><a href="#问题描述-1" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 <span class="selector-tag">a</span> + <span class="selector-tag">b</span> + c = <span class="number">0</span> ？找出所有满足条件且不重复的三元组。</span><br><span class="line"></span><br><span class="line">注意：答案中不可以包含重复的三元组。</span><br></pre></td></tr></table></figure>
+<p><strong>示例</strong>  </p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">nums = [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">-1</span>, <span class="number">-4</span>]，</span><br><span class="line"></span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">  [<span class="number">-1</span>, <span class="number">0</span>, <span class="number">1</span>],</span><br><span class="line">  [<span class="number">-1</span>, <span class="number">-1</span>, <span class="number">2</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>既然两道题放到了一个篇章，那就说明两道题的思路是非常相似的，我们同样采用双指针来进行遍历寻找解，不同在于这次需要跳过重复元素来避免出现重复解，python代码如下</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        nums=sorted(nums)</span><br><span class="line">        result=[]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(nums)<span class="number">-2</span>):</span><br><span class="line">            <span class="keyword">if</span> i==<span class="number">0</span> <span class="keyword">or</span> nums[i]!=nums[i<span class="number">-1</span>]:<span class="comment">#去除起始重复元素</span></span><br><span class="line">                left,right=i+<span class="number">1</span>,len(nums)<span class="number">-1</span></span><br><span class="line">                <span class="keyword">while</span> left&lt;right:</span><br><span class="line">                    currentSum=nums[i]+nums[left]+nums[right]</span><br><span class="line">                    <span class="keyword">if</span> currentSum&lt;<span class="number">0</span>:</span><br><span class="line">                        left+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">elif</span> currentSum&gt;<span class="number">0</span>:</span><br><span class="line">                        right-=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">else</span>:</span><br><span class="line">                        currentRes=[nums[i],nums[left],nums[right]]</span><br><span class="line">                        result.append(currentRes)</span><br><span class="line">                        left+=<span class="number">1</span></span><br><span class="line">        result=set([tuple(t) <span class="keyword">for</span> t <span class="keyword">in</span> result])<span class="comment">#去除重复元素</span></span><br><span class="line">        result=list(result)</span><br><span class="line">        <span class="keyword">return</span> result</span><br></pre></td></tr></table></figure>
+
       
     </div>
 
@@ -533,7 +539,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总之暴力法一定可以！"><span class="nav-number">2.</span> <span class="nav-text">总之暴力法一定可以！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#降低复杂度提升效率"><span class="nav-number">3.</span> <span class="nav-text">降低复杂度提升效率</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#最接近的三数之和"><span class="nav-number">1.</span> <span class="nav-text">最接近的三数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总之暴力法一定可以！"><span class="nav-number">1.2.</span> <span class="nav-text">总之暴力法一定可以！</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#降低复杂度提升效率"><span class="nav-number">1.3.</span> <span class="nav-text">降低复杂度提升效率</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三数之和"><span class="nav-number">2.</span> <span class="nav-text">三数之和</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.2.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></div>
             
 
           </div>
