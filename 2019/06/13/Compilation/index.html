@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Charley_Young">
 <meta property="og:description" content="整理编译原理课程的知识点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-13T03:23:21.019Z">
+<meta property="og:updated_time" content="2019-06-13T03:30:39.395Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="创建时间：2019-06-13 11:52:41 / 修改时间：12:23:21" itemprop="dateCreated datePublished" datetime="2019-06-13T11:52:41+09:00">2019-06-13</time>
+              <time title="创建时间：2019-06-13 11:52:41 / 修改时间：12:30:39" itemprop="dateCreated datePublished" datetime="2019-06-13T11:52:41+09:00">2019-06-13</time>
             
 
             
@@ -392,7 +392,7 @@
 </tr>
 <tr>
 <td style="text-align:center">连接：$LM$</td>
-<td style="text-align:center">$LM = \{st\ s \in L\ and\ t \in M\}$</td>
+<td style="text-align:center">$LM = \{st &#124;\ s \in L\ and\ t \in M\}$</td>
 </tr>
 <tr>
 <td style="text-align:center">闭包：$L^*$</td>
@@ -422,8 +422,24 @@
 <td style="text-align:center">$\{a\}$</td>
 </tr>
 <tr>
-<td style="text-align:center">$a b$</td>
+<td style="text-align:center">a&#124;b</td>
 <td style="text-align:center">$\{a\}\cup \{b\}$</td>
+</tr>
+<tr>
+<td style="text-align:center">ab</td>
+<td style="text-align:center">$\{a\}\{b\}=\{ab\}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$a^*$</td>
+<td style="text-align:center">$\{a\}^*=\{\epsilon,a,aa,aaa,…\}$</td>
+</tr>
+<tr>
+<td style="text-align:center">$(a&#124;b)(a&#124;b)$</td>
+<td style="text-align:center">$\{aa,ab,ba,bb\}$(其实就是$\{a,b\}$的自连接)</td>
+</tr>
+<tr>
+<td style="text-align:center">$(a &#124; b)^*$</td>
+<td style="text-align:center">$\{\epsilon,a,b,aa,ab,ba,bb,…\}$(其实就是$\{a,b\}$的闭包)</td>
 </tr>
 </tbody>
 </table>
