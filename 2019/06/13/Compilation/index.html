@@ -96,17 +96,17 @@
 
 
 
-  <meta name="description" content="记录leetcode上腾讯精选50题“字符串相乘”的思路">
+  <meta name="description" content="整理编译原理课程的知识点">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode腾讯精选50题“字符串相乘”">
-<meta property="og:url" content="http://yoursite.com/2019/05/20/multiply/index.html">
+<meta property="og:title" content="编译原理重点整理">
+<meta property="og:url" content="http://yoursite.com/2019/06/13/Compilation/index.html">
 <meta property="og:site_name" content="Charley_Young">
-<meta property="og:description" content="记录leetcode上腾讯精选50题“字符串相乘”的思路">
+<meta property="og:description" content="整理编译原理课程的知识点">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-05-20T06:55:42.254Z">
+<meta property="og:updated_time" content="2019-06-13T02:54:55.024Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode腾讯精选50题“字符串相乘”">
-<meta name="twitter:description" content="记录leetcode上腾讯精选50题“字符串相乘”的思路">
+<meta name="twitter:title" content="编译原理重点整理">
+<meta name="twitter:description" content="整理编译原理课程的知识点">
 
 
 
@@ -114,7 +114,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/05/20/multiply/">
+  <link rel="canonical" href="http://yoursite.com/2019/06/13/Compilation/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>leetcode腾讯精选50题“字符串相乘” | Charley_Young</title>
+  <title>编译原理重点整理 | Charley_Young</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/20/multiply/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/13/Compilation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Charley_Young">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode腾讯精选50题“字符串相乘”
+          <h1 class="post-title" itemprop="name headline">编译原理重点整理
 
               
             
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="创建时间：2019-05-20 15:37:01 / 修改时间：15:55:42" itemprop="dateCreated datePublished" datetime="2019-05-20T15:37:01+09:00">2019-05-20</time>
+              <time title="创建时间：2019-06-13 11:52:41 / 修改时间：11:54:55" itemprop="dateCreated datePublished" datetime="2019-06-13T11:52:41+09:00">2019-06-13</time>
             
 
             
@@ -371,19 +371,44 @@
       
 
       
-        <p>记录leetcode上腾讯精选50题“字符串相乘”的思路</p>
+        <p>整理编译原理课程的知识点</p>
 <a id="more"></a>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">给定两个以字符串形式表示的非负整数 num1 和 num2，返回 num1 和 num2 的乘积，它们的乘积也表示为字符串形式。</span><br><span class="line">num1 和 num2 的长度小于<span class="number">110</span>。</span><br><span class="line">num1 和 num2 只包含数字 <span class="number">0</span><span class="number">-9</span>。</span><br><span class="line">num1 和 num2 均不以零开头，除非是数字 <span class="number">0</span> 本身。</span><br><span class="line">不能使用任何标准库的大数类型（比如 BigInteger）或直接将输入转换为整数来处理。</span><br></pre></td></tr></table></figure>
-<p><strong>示例1：</strong>  </p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="symbol">num1</span> = <span class="string">"2"</span>, <span class="symbol">num2</span> = <span class="string">"3"</span></span><br><span class="line">输出: <span class="string">"6"</span></span><br></pre></td></tr></table></figure>
-<p><strong>示例2：</strong>  </p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: <span class="symbol">num1</span> = <span class="string">"123"</span>, <span class="symbol">num2</span> = <span class="string">"456"</span></span><br><span class="line">输出: <span class="string">"56088"</span></span><br></pre></td></tr></table></figure>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>首先注意到乘法的规则（以123*45）为例</p>
-<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="code">    </span></span><br><span class="line"><span class="code">    1 2 3</span></span><br><span class="line"><span class="bullet">*     </span>4 5</span><br><span class="line">---------</span><br><span class="line"><span class="code">      1 5</span></span><br><span class="line"><span class="code">    1 0</span></span><br><span class="line"><span class="code">    5</span></span><br><span class="line">---------</span><br><span class="line"><span class="code">    6 1 5</span></span><br><span class="line"><span class="code">    1 2</span></span><br><span class="line"><span class="code">  0 8</span></span><br><span class="line"><span class="code">  4</span></span><br><span class="line">---------</span><br><span class="line"><span class="code">  5 5 3 5</span></span><br></pre></td></tr></table></figure>
-<p>同时，对于一个m位的数与n位的数相乘，其乘积的位数为m+n-1或者m+n位，因此在声明结果数组的时候直接声明m+n位，最后根据结果来判断是否舍去先导0  </p>
-<p>那么现在要做的就是使用双重循环从尾部开始遍历两个乘数然后把结果进行一个叠加并存入实现定好的结果数组中，python实现如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">multiply</span><span class="params">(self,num1,num2)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> len(num1)==<span class="number">0</span> <span class="keyword">or</span> len(num2)==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span></span><br><span class="line">        <span class="comment">#0乘以任何数都为0</span></span><br><span class="line">        <span class="keyword">if</span> num1==<span class="string">'0'</span> <span class="keyword">or</span> num2==<span class="string">'0'</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">'0'</span></span><br><span class="line">        <span class="comment">#声明一个长度为m+n的列表，初始值均为0</span></span><br><span class="line">        result=[<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1+num2))]</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(num1)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):<span class="comment">#循环外层，用于遍历乘数</span></span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> range(len(num2)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):<span class="comment">#循环内层，用于遍历被乘数</span></span><br><span class="line">                mul=int(num1[i])*int(num2[j])</span><br><span class="line">                mul+=result[i+j+<span class="number">1</span>]<span class="comment">#查看当前位有没有来自上一位的进位存放</span></span><br><span class="line">                result[i+j]+=mul//<span class="number">10</span></span><br><span class="line">                result[i+j+<span class="number">1</span>]=mul%<span class="number">10</span></span><br><span class="line">        result=map(str,result)<span class="comment">#把列表里面的元素转成字符串</span></span><br><span class="line">        res=<span class="string">""</span>.join(result)<span class="comment">#把列表加入到字符串中</span></span><br><span class="line">        <span class="comment">#条件判断看是否需要舍去先导0</span></span><br><span class="line">        <span class="keyword">if</span> result[<span class="number">0</span>]==<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">return</span> res[<span class="number">1</span>:]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
-<p>执行用时：224ms<br>超过38.47%的python3提交记录，还需要继续优化，先写到这里</p>
+<h2 id="词法分析"><a href="#词法分析" class="headerlink" title="词法分析"></a>词法分析</h2><h2 id="2-1词法分析器的任务"><a href="#2-1词法分析器的任务" class="headerlink" title="2.1词法分析器的任务"></a>2.1词法分析器的任务</h2><p>从源代码中读取输入字符，按照$\color{red}{构词规则}$切分成一系列的单词（token），提交给$\color{red}{语法分析使用}$</p>
+<h2 id="2-1词法分析器的输出"><a href="#2-1词法分析器的输出" class="headerlink" title="2.1词法分析器的输出"></a>2.1词法分析器的输出</h2><p>词法分析器的分析结果，即输出为token序列，其中token包含两部分内容，即<br>$Token=字符串（词义）+类型（词法）$</p>
+<h2 id="2-2一些基本概念和术语"><a href="#2-2一些基本概念和术语" class="headerlink" title="2.2一些基本概念和术语"></a>2.2一些基本概念和术语</h2><p>1.字母表（符号表，符号集）：由若干元素（符号、字母）组成的有限非空集合称为字母表<br>2.符号串：由字母表中的符号组成的任何有穷序列称为符号串<br>3.空符号串$ε$：不包含任何符号的符号串，其长度为0<br>4.符号串的方幂：符号串自身连接$n$次得到的符号串$x_n$ 定义为 $xx…xx$；  $x^1=x$, $x^2=xx$，且规定$x^0=ε$<br>5.符号串集合（或语言）：若集合A中所有元素都是某字母表上的符号串，则称A为字母表上的符号串集合（或语言）  </p>
+<p>下面是一些符号串集合的操作  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Operation</th>
+<th style="text-align:center">Definition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">并：$L\cup M$</td>
+<td style="text-align:center">$L\cup M = \{s\</td>
+<td>s \in L\ or\ s \in M\}$</td>
+</tr>
+<tr>
+<td style="text-align:center">连接：$LM$</td>
+<td style="text-align:center">$LM = \{st \</td>
+<td>s \in L\ and\ t \in M\}$</td>
+</tr>
+<tr>
+<td style="text-align:center">闭包：$L^*$</td>
+<td style="text-align:center">$L=\cup^\infty_{i=0}L^i=L^0\cup L\cup LL…$ 其中$L^0=ε$</td>
+</tr>
+<tr>
+<td style="text-align:center">正闭包: $L^+$</td>
+<td style="text-align:center">$L=\cup^\infty_{i=1}L^i=L\cup LL\cup LLL…$</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="2-2-2正则表达式"><a href="#2-2-2正则表达式" class="headerlink" title="2.2.2正则表达式"></a>2.2.2正则表达式</h2><p>定义<br>1.$\color{red}{正规表达式}$（也称正则表达式）：是用特定的$\color{red}{运算符}$及$\color{red}{运算对象}$按规则构造的表达式；<br>2.每个正规表达式匹配（或代表、或表示）一个字符串的集合（称为$\color{red}{正规集}$）  </p>
+<p>作用<br>正则表达式是描述语言$\color{red}{词法规则的形式化工具}$  </p>
 
       
     </div>
@@ -414,8 +439,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/05/13/UnivaluePath/" rel="next" title="leetcode题目687.最长同值路径">
-                <i class="fa fa-chevron-left"></i> leetcode题目687.最长同值路径
+              <a href="/2019/05/27/mergeKSortedLists/" rel="next" title="leetcode腾讯精选50题“合并K个有序链表”">
+                <i class="fa fa-chevron-left"></i> leetcode腾讯精选50题“合并K个有序链表”
               </a>
             
           </div>
@@ -423,10 +448,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/05/20/threeSumClosest/" rel="prev" title="leetcode腾讯精选50题“最接近的三数之和”和“三数之和”">
-                leetcode腾讯精选50题“最接近的三数之和”和“三数之和” <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -541,7 +562,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法分析"><span class="nav-number">1.</span> <span class="nav-text">词法分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1词法分析器的任务"><span class="nav-number">2.</span> <span class="nav-text">2.1词法分析器的任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1词法分析器的输出"><span class="nav-number">3.</span> <span class="nav-text">2.1词法分析器的输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2一些基本概念和术语"><span class="nav-number">4.</span> <span class="nav-text">2.2一些基本概念和术语</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2正则表达式"><span class="nav-number">5.</span> <span class="nav-text">2.2.2正则表达式</span></a></li></ol></div>
             
 
           </div>
