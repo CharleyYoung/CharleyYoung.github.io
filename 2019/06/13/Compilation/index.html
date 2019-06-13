@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/DFA_Transfer.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/regex-NFA_s1.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/regex-NFA_s2.png">
-<meta property="og:updated_time" content="2019-06-13T12:53:23.047Z">
+<meta property="og:updated_time" content="2019-06-13T13:06:17.137Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -337,7 +337,7 @@
                 
               
 
-              <time title="创建时间：2019-06-13 11:52:41 / 修改时间：21:53:23" itemprop="dateCreated datePublished" datetime="2019-06-13T11:52:41+09:00">2019-06-13</time>
+              <time title="创建时间：2019-06-13 11:52:41 / 修改时间：22:06:17" itemprop="dateCreated datePublished" datetime="2019-06-13T11:52:41+09:00">2019-06-13</time>
             
 
             
@@ -461,7 +461,7 @@
 <p>由上述五个元素组成的五元式$M=(S,\Sigma,T,s_0,A)$称为一个确定的有穷自动机  </p>
 <p><strong>状态转换机：</strong> 假定DFA M含有m个状态，那么状态图（或称状态转换图）就含有m个结点，小圆圈表示圆圈中标入状态的名字或编号，用箭头指示初始状态，用双圆圈表示终止状态。，如下图所示  </p>
 <p><img src="/2019/06/13/Compilation/DFA_Sample.png" alt="状态转换图"></p>
-<p>若$T(s,a)=s^’$，则从状态结点$s$到$s’$画条标记为a的矢线，如下图所示<br><img src="/2019/06/13/Compilation/DFA_Transfer.png" alt="状态转换"></p>
+<p>若$T(s,a)=s’$，则从状态结点$s$到$s’$画条标记为a的矢线，如下图所示<br><img src="/2019/06/13/Compilation/DFA_Transfer.png" alt="状态转换"></p>
 <p>DFA的接受集（即识别符号串的集合）记作$L(M)$, 字符串$c_1c_2……c_n$如果被DFA识别或接受，则在状态转换图中存在一条从初态到终态的有向路经，该路径所有矢线上方的字符连接在一起即是字符串$c_1c_2……c_n$</p>
 <h2 id="2-3-3非确定性有穷自动机"><a href="#2-3-3非确定性有穷自动机" class="headerlink" title="2.3.3非确定性有穷自动机"></a>2.3.3非确定性有穷自动机</h2><p><strong>定义（大概）：</strong> 自动机对于某个输入符号，在同一个状态上存在不止一种转换</p>
 <p>NFA(非确定性有穷自动机)有五个部分组成<br>1.有限个输入符号组成的集合，记作$\Sigma$<br>2.有限个状态的集合，记作$S$<br>3.转换函数T;$T:S\times(\Sigma\cup\{\epsilon\})\rightarrow\rho(S)$其中$\rho(S)$为多个状态的集合<br>4.初始状态$s_0\in S$<br>5.若干个接受状态的集合$A\subseteq S$  </p>
