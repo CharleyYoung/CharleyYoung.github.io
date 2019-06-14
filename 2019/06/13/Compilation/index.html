@@ -107,7 +107,8 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/DFA_Transfer.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/regex-NFA_s1.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/regex-NFA_s2.png">
-<meta property="og:updated_time" content="2019-06-14T01:57:19.694Z">
+<meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/NFA转DFA.png">
+<meta property="og:updated_time" content="2019-06-14T08:51:45.582Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -354,7 +355,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-14 10:57:19" itemprop="dateModified" datetime="2019-06-14T10:57:19+09:00">2019-06-14</time>
+                <time title="修改时间：2019-06-14 17:51:45" itemprop="dateModified" datetime="2019-06-14T17:51:45+09:00">2019-06-14</time>
               
             
           </span>
@@ -486,6 +487,7 @@
 <p>例：设有正规表达式$letter(letter|digit)^*$,试构造与之等价的NFA，其中$letter=[a-z]$,$digit=[0-9]$<br>结果如下列图所示<br><img src="/2019/06/13/Compilation/regex-NFA_s1.png" alt="步骤图1"><br><img src="/2019/06/13/Compilation/regex-NFA_s2.png" alt="步骤图2">  </p>
 <h2 id="2-4-2从NFA到DFA"><a href="#2-4-2从NFA到DFA" class="headerlink" title="2.4.2从NFA到DFA"></a>2.4.2从NFA到DFA</h2><p>对于字母表$\Sigma$上的任意NFA M，必定存在与M等价的 DFA M’</p>
 <p>状态s的$\epsilon$-闭包定义为从s出发经过零个或多个$\epsilon$-转换能达到的状态的集合，并将这个集合记为$\stackrel{-}{s}$</p>
+<p>这样由NFA构造DFA的子集构造算法如下<br>1.计算M的初始状态$s_0$的$\epsilon$-闭包，令其作为$\stackrel{——}{M}$的初始状态$\stackrel{-}{s_0}$<br>2.对$\stackrel{——}{S}$中尚未标记的状态$\stackrel{-}{s_i}=\{s_{i1},s_{i2},…,s_{im}\}$,求出从它们出发的转换和转换到达的新状态<br>3.重复步骤2直到$\stackrel{——}{S}$中没有新状态<br>4.令$\stackrel{——}{A}=\{\stackrel{-}{s_i} | \stackrel{-}{s_i}\cap A \neq \emptyset\}$<br>示例如下图<br><img src="/2019/06/13/Compilation/NFA转DFA.png" alt="NFA转DFA">  </p>
 
       
     </div>
