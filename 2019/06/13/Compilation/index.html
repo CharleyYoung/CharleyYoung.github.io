@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/NFA转DFA.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/minDFA_origin.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/minDFA_final.png">
-<meta property="og:updated_time" content="2019-06-16T07:39:59.905Z">
+<meta property="og:updated_time" content="2019-06-16T07:46:38.167Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -357,7 +357,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-16 16:39:59" itemprop="dateModified" datetime="2019-06-16T16:39:59+09:00">2019-06-16</time>
+                <time title="修改时间：2019-06-16 16:46:38" itemprop="dateModified" datetime="2019-06-16T16:46:38+09:00">2019-06-16</time>
               
             
           </span>
@@ -425,7 +425,7 @@
 </tbody>
 </table>
 </div>
-<h2 id="2-2-2正则表达式"><a href="#2-2-2正则表达式" class="headerlink" title="2.2.2正则表达式"></a>2.2.2正则表达式</h2><p>定义<br>1.$\color{red}{正规表达式}$（也称正则表达式）：是用特定的$\color{red}{运算符}$及$\color{red}{运算对象}$按规则构造的表达式；<br>2.每个正规表达式匹配（或代表、或表示）一个字符串的集合（称为$\color{red}{正规集}$）  </p>
+<h4 id="2-2-2正则表达式"><a href="#2-2-2正则表达式" class="headerlink" title="2.2.2正则表达式"></a>2.2.2正则表达式</h4><p>定义<br>1.$\color{red}{正规表达式}$（也称正则表达式）：是用特定的$\color{red}{运算符}$及$\color{red}{运算对象}$按规则构造的表达式；<br>2.每个正规表达式匹配（或代表、或表示）一个字符串的集合（称为$\color{red}{正规集}$）  </p>
 <p>作用<br>正则表达式是描述语言$\color{red}{词法规则的形式化工具}$  </p>
 <p>正规表达式和正规集举例<br>$\Sigma=\{a,b\}$</p>
 <div class="table-container">
@@ -464,38 +464,38 @@
 </tbody>
 </table>
 </div>
-<h2 id="2-2-2正规表达式的定义（续）"><a href="#2-2-2正规表达式的定义（续）" class="headerlink" title="2.2.2正规表达式的定义（续）"></a>2.2.2正规表达式的定义（续）</h2><p>一个正规表达式可以$\color{red}{唯一确定一个正规集}$,但是一个正规集$\color{red}{则可以由多个不同的正规式表示}$</p>
+<h4 id="2-2-2正规表达式的定义（续）"><a href="#2-2-2正规表达式的定义（续）" class="headerlink" title="2.2.2正规表达式的定义（续）"></a>2.2.2正规表达式的定义（续）</h4><p>一个正规表达式可以$\color{red}{唯一确定一个正规集}$,但是一个正规集$\color{red}{则可以由多个不同的正规式表示}$</p>
 <p><strong>等价：</strong> 若$\color{red}{两个正规式}$描述同一个正规集，则称这两个正规表达式$\color{red}{等价}$</p>
-<h2 id="2-2-3正规表达式的扩展"><a href="#2-2-3正规表达式的扩展" class="headerlink" title="2.2.3正规表达式的扩展"></a>2.2.3正规表达式的扩展</h2><p><strong>任意字符(.)：</strong> 句点“.”表示可以匹配除了换行符之外的任意单个字符</p>
+<h4 id="2-2-3正规表达式的扩展"><a href="#2-2-3正规表达式的扩展" class="headerlink" title="2.2.3正规表达式的扩展"></a>2.2.3正规表达式的扩展</h4><p><strong>任意字符(.)：</strong> 句点“.”表示可以匹配除了换行符之外的任意单个字符</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如，对于所有包含至少一个b 的符号串构成集合，其对应的正规表达式为  .*b .*</span><br></pre></td></tr></table></figure>
 <p><strong>引号：</strong> 引号中的字符串表示文本字符串本身</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如，“.”表示要匹配.字符本身</span><br></pre></td></tr></table></figure>
 <p><strong>字符范围：</strong>  表示法a|b|…|z表示a到z的所有小写字符，0|1|…|9表示0到9的所有数字，更为常用的表示方法为利用方括号和一个连字符，如[a-z],[0-9]</p>
 <p><strong>可选子表达式(?)：</strong> 引入问号? 表示正规表达式匹配的串是可选的</p>
-<h2 id="2-3-2有穷自动机"><a href="#2-3-2有穷自动机" class="headerlink" title="2.3.2有穷自动机"></a>2.3.2有穷自动机</h2><p>DFA(确定性有穷自动机)由五个部分组成<br>1.有限个输入符号组成的集合，记作$\Sigma$<br>2.有限个状态的集合，记作$S$<br>3.转换函数$T:S\times\Sigma\rightarrow S$<br>4.初始状态$s_0\in S$,识别符号串的起始状态<br>5.若干个识别符号串的接受状态（或称为终止状态）的集合$A\subseteq S$  </p>
+<h3 id="2-3-2有穷自动机"><a href="#2-3-2有穷自动机" class="headerlink" title="2.3.2有穷自动机"></a>2.3.2有穷自动机</h3><p>DFA(确定性有穷自动机)由五个部分组成<br>1.有限个输入符号组成的集合，记作$\Sigma$<br>2.有限个状态的集合，记作$S$<br>3.转换函数$T:S\times\Sigma\rightarrow S$<br>4.初始状态$s_0\in S$,识别符号串的起始状态<br>5.若干个识别符号串的接受状态（或称为终止状态）的集合$A\subseteq S$  </p>
 <p>由上述五个元素组成的五元式$M=(S,\Sigma,T,s_0,A)$称为一个确定的有穷自动机  </p>
 <p><strong>状态转换机：</strong> 假定DFA M含有m个状态，那么状态图（或称状态转换图）就含有m个结点，小圆圈表示圆圈中标入状态的名字或编号，用箭头指示初始状态，用双圆圈表示终止状态。，如下图所示  </p>
 <p><img src="/2019/06/13/Compilation/DFA_Sample.png" alt="状态转换图"></p>
 <p>若$T(s,a)=s’$，则从状态结点$s$到$s’$画条标记为a的矢线，如下图所示<br><img src="/2019/06/13/Compilation/DFA_Transfer.png" alt="状态转换"></p>
 <p>DFA的接受集（即识别符号串的集合）记作$L(M)$, 字符串$c_1c_2……c_n$如果被DFA识别或接受，则在状态转换图中存在一条从初态到终态的有向路经，该路径所有矢线上方的字符连接在一起即是字符串$c_1c_2……c_n$</p>
-<h2 id="2-3-3非确定性有穷自动机"><a href="#2-3-3非确定性有穷自动机" class="headerlink" title="2.3.3非确定性有穷自动机"></a>2.3.3非确定性有穷自动机</h2><p><strong>定义（大概）：</strong> 自动机对于某个输入符号，在同一个状态上存在不止一种转换</p>
+<h3 id="2-3-3非确定性有穷自动机"><a href="#2-3-3非确定性有穷自动机" class="headerlink" title="2.3.3非确定性有穷自动机"></a>2.3.3非确定性有穷自动机</h3><p><strong>定义（大概）：</strong> 自动机对于某个输入符号，在同一个状态上存在不止一种转换</p>
 <p>NFA(非确定性有穷自动机)有五个部分组成<br>1.有限个输入符号组成的集合，记作$\Sigma$<br>2.有限个状态的集合，记作$S$<br>3.转换函数T;$T:S\times(\Sigma\cup\{\epsilon\})\rightarrow\rho(S)$其中$\rho(S)$为多个状态的集合<br>4.初始状态$s_0\in S$<br>5.若干个接受状态的集合$A\subseteq S$  </p>
 <p>由上述五个元素组成的五元式$M=(S,\Sigma,T,s_0,A)$称为一个非确定的有穷自动机$\color{red}{看上去和DFA很像但不是一个东西}$  </p>
 <p><strong>有穷自动机是$\color{red}{设计和实现词法分析器}$的有效工具，其直观图是一种状态转换图</strong>  </p>
 <p>正规式是单词的一种描述工具。由于正规式的简洁性，趋向于用正规式来描述单词，然后构造等价的有限自动机。<br>有限自动机可以描述输入串被识别的过程，可以根据有限自动机构造词法分析程序。  </p>
-<h2 id="2-4从正规表达式到DFA（本章最大重点）"><a href="#2-4从正规表达式到DFA（本章最大重点）" class="headerlink" title="2.4从正规表达式到DFA（本章最大重点）"></a>2.4从正规表达式到DFA（本章最大重点）</h2><p>从正规式到DFA总共有三个步骤，即<br>1.正规式转化为NFA<br>2.NFA转换为DFA<br>3.DFA中的状态数最小化  </p>
+<h3 id="2-4从正规表达式到DFA（本章最大重点）"><a href="#2-4从正规表达式到DFA（本章最大重点）" class="headerlink" title="2.4从正规表达式到DFA（本章最大重点）"></a>2.4从正规表达式到DFA（本章最大重点）</h3><p>从正规式到DFA总共有三个步骤，即<br>1.正规式转化为NFA<br>2.NFA转换为DFA<br>3.DFA中的状态数最小化  </p>
 <p>按照这样的规则去转化，可以保证转化过程不出错且结果最简洁  </p>
-<h2 id="2-4-1从正规式到NFA"><a href="#2-4-1从正规式到NFA" class="headerlink" title="2.4.1从正规式到NFA"></a>2.4.1从正规式到NFA</h2><p>从正规表达式到NFA的转化方法按正规式的运算指引构造过程，$\color{red}{将正规式分解为一系列子表达式，然后将子表达式对应的NFA依次连接}$  </p>
+<h4 id="2-4-1从正规式到NFA"><a href="#2-4-1从正规式到NFA" class="headerlink" title="2.4.1从正规式到NFA"></a>2.4.1从正规式到NFA</h4><p>从正规表达式到NFA的转化方法按正规式的运算指引构造过程，$\color{red}{将正规式分解为一系列子表达式，然后将子表达式对应的NFA依次连接}$  </p>
 <p>例：设有正规表达式$letter(letter|digit)^*$,试构造与之等价的NFA，其中$letter=[a-z]$,$digit=[0-9]$<br>结果如下列图所示<br><img src="/2019/06/13/Compilation/regex-NFA_s1.png" alt="步骤图1"><br><img src="/2019/06/13/Compilation/regex-NFA_s2.png" alt="步骤图2">  </p>
-<h2 id="2-4-2从NFA到DFA"><a href="#2-4-2从NFA到DFA" class="headerlink" title="2.4.2从NFA到DFA"></a>2.4.2从NFA到DFA</h2><p>对于字母表$\Sigma$上的任意NFA M，必定存在与M等价的 DFA M’</p>
+<h4 id="2-4-2从NFA到DFA"><a href="#2-4-2从NFA到DFA" class="headerlink" title="2.4.2从NFA到DFA"></a>2.4.2从NFA到DFA</h4><p>对于字母表$\Sigma$上的任意NFA M，必定存在与M等价的 DFA M’</p>
 <p>状态s的$\epsilon$-闭包定义为从s出发经过零个或多个$\epsilon$-转换能达到的状态的集合，并将这个集合记为$\stackrel{-}{s}$</p>
 <p>这样由NFA构造DFA的子集构造算法如下<br>1.计算M的初始状态$s_0$的$\epsilon$-闭包，令其作为$\stackrel{——}{M}$的初始状态$\stackrel{-}{s_0}$<br>2.对$\stackrel{——}{S}$中尚未标记的状态$\stackrel{-}{s_i}=\{s_{i1},s_{i2},…,s_{im}\}$,求出从它们出发的转换和转换到达的新状态<br>3.重复步骤2直到$\stackrel{——}{S}$中没有新状态<br>4.令$\stackrel{——}{A}=\{\stackrel{-}{s_i} | \stackrel{-}{s_i}\cap A \neq \emptyset\}$<br>示例如下图<br><img src="/2019/06/13/Compilation/NFA转DFA.png" alt="NFA转DFA">  </p>
-<h2 id="2-4-3将DFA中的状态最小化"><a href="#2-4-3将DFA中的状态最小化" class="headerlink" title="2.4.3将DFA中的状态最小化"></a>2.4.3将DFA中的状态最小化</h2><p><strong>结论：</strong>对于任何给定的DFA，存在一个$\color{red}{含有最少状态与之等价}的DFA$，而且这个最小状态的DFA在同构意义下是唯一的</p>
-<h2 id="2-4-3-1如何找到最小化的DFA？"><a href="#2-4-3-1如何找到最小化的DFA？" class="headerlink" title="2.4.3.1如何找到最小化的DFA？"></a>2.4.3.1如何找到最小化的DFA？</h2><p>将识别功能相同的状态合并为一个状态，通过状态等价类划分来实现  </p>
+<h4 id="2-4-3将DFA中的状态最小化"><a href="#2-4-3将DFA中的状态最小化" class="headerlink" title="2.4.3将DFA中的状态最小化"></a>2.4.3将DFA中的状态最小化</h4><p><strong>结论：</strong>对于任何给定的DFA，存在一个$\color{red}{含有最少状态与之等价}的DFA$，而且这个最小状态的DFA在同构意义下是唯一的</p>
+<h5 id="2-4-3-1如何找到最小化的DFA？"><a href="#2-4-3-1如何找到最小化的DFA？" class="headerlink" title="2.4.3.1如何找到最小化的DFA？"></a>2.4.3.1如何找到最小化的DFA？</h5><p>将识别功能相同的状态合并为一个状态，通过状态等价类划分来实现  </p>
 <p>对于任意给定的输入串$w$，若DFA分别从状态$s_1$和$s_2$出发，对于是否接受$w$有相同的结论，则称状态$\color{red}{s_1和s_2位于同一个等价类}$，否则称状态$s_1$和$s_2$是可区分的<br>DFA最小化的算法步骤为<br>1.将状态集合$S$分为两个等价类：$A$和$S-A$<br>2.细分等价类：对于当前划分的某个等价类$K$，$s_1,s_2\in K$，如果满足<br>    2.1.$\exist a,s_1或s_2中的一个\color{red}{无法识别a}$<br>    2.2.$\exist a,s_1或s_2识别a后到达的状态分别在目前\color{red}{划分的不同等价类中}$<br>那么$K$就划分为不同的等价类$K_i,K_j,使得s_1\in K_i,s_2\in K_j$<br>3.递归上述步骤2中细分等价类的工作，直到所有等价类都不能再细分为止  </p>
 <p>例题.将下列DFA化简为最小化DFA<br><img src="/2019/06/13/Compilation/minDFA_origin.png" alt="sample"></p>
 <p>1.首先将状态集划分为两个等价类$\{4\},\{0,1,2,3\}$<br>2.对于输入符号a，b<br>$T(0,a)=1, T(1,a)=1, T(2,a)=1, T(3,a)=1$<br>$T(0,b)=2, T(1,b)=3, T(2,b)=2, T(3,b)=4$<br>此时$\{0,1,2,3\}$被符号b分割为两个等价类$\{0,1,2\},\{3\}$<br>,此时一共有三个状态集$\{4\},\{0,1,2\},\{3\}$<br>3.观察2的结果，可知状态集$\{0,1,2\}$被b继续分割为$\{0,2\},\{1\}$<br>4.此时一共有四个状态集$\{4\},\{0,2\},\{3\},\{1\}$，最后求得的状态机如下图<br><img src="/2019/06/13/Compilation/minDFA_final.png" alt="final"></p>
-
+<h3 id="2-5用代码实现有穷自动机"><a href="#2-5用代码实现有穷自动机" class="headerlink" title="2.5用代码实现有穷自动机"></a>2.5用代码实现有穷自动机</h3>
       
     </div>
 
@@ -648,7 +648,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法分析"><span class="nav-number">1.</span> <span class="nav-text">词法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1词法分析器的任务"><span class="nav-number">1.1.</span> <span class="nav-text">2.1词法分析器的任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1词法分析器的输出"><span class="nav-number">1.2.</span> <span class="nav-text">2.1词法分析器的输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2一些基本概念和术语"><span class="nav-number">1.3.</span> <span class="nav-text">2.2一些基本概念和术语</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2正则表达式"><span class="nav-number">2.</span> <span class="nav-text">2.2.2正则表达式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-2正规表达式的定义（续）"><span class="nav-number">3.</span> <span class="nav-text">2.2.2正规表达式的定义（续）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-3正规表达式的扩展"><span class="nav-number">4.</span> <span class="nav-text">2.2.3正规表达式的扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-2有穷自动机"><span class="nav-number">5.</span> <span class="nav-text">2.3.2有穷自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-3非确定性有穷自动机"><span class="nav-number">6.</span> <span class="nav-text">2.3.3非确定性有穷自动机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4从正规表达式到DFA（本章最大重点）"><span class="nav-number">7.</span> <span class="nav-text">2.4从正规表达式到DFA（本章最大重点）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-1从正规式到NFA"><span class="nav-number">8.</span> <span class="nav-text">2.4.1从正规式到NFA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-2从NFA到DFA"><span class="nav-number">9.</span> <span class="nav-text">2.4.2从NFA到DFA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3将DFA中的状态最小化"><span class="nav-number">10.</span> <span class="nav-text">2.4.3将DFA中的状态最小化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-3-1如何找到最小化的DFA？"><span class="nav-number">11.</span> <span class="nav-text">2.4.3.1如何找到最小化的DFA？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#词法分析"><span class="nav-number">1.</span> <span class="nav-text">词法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1词法分析器的任务"><span class="nav-number">1.1.</span> <span class="nav-text">2.1词法分析器的任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1词法分析器的输出"><span class="nav-number">1.2.</span> <span class="nav-text">2.1词法分析器的输出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2一些基本概念和术语"><span class="nav-number">1.3.</span> <span class="nav-text">2.2一些基本概念和术语</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2正则表达式"><span class="nav-number">1.3.1.</span> <span class="nav-text">2.2.2正则表达式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2正规表达式的定义（续）"><span class="nav-number">1.3.2.</span> <span class="nav-text">2.2.2正规表达式的定义（续）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3正规表达式的扩展"><span class="nav-number">1.3.3.</span> <span class="nav-text">2.2.3正规表达式的扩展</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2有穷自动机"><span class="nav-number">1.4.</span> <span class="nav-text">2.3.2有穷自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3非确定性有穷自动机"><span class="nav-number">1.5.</span> <span class="nav-text">2.3.3非确定性有穷自动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4从正规表达式到DFA（本章最大重点）"><span class="nav-number">1.6.</span> <span class="nav-text">2.4从正规表达式到DFA（本章最大重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-1从正规式到NFA"><span class="nav-number">1.6.1.</span> <span class="nav-text">2.4.1从正规式到NFA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-2从NFA到DFA"><span class="nav-number">1.6.2.</span> <span class="nav-text">2.4.2从NFA到DFA</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-4-3将DFA中的状态最小化"><span class="nav-number">1.6.3.</span> <span class="nav-text">2.4.3将DFA中的状态最小化</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#2-4-3-1如何找到最小化的DFA？"><span class="nav-number">1.6.3.1.</span> <span class="nav-text">2.4.3.1如何找到最小化的DFA？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-5用代码实现有穷自动机"><span class="nav-number">1.7.</span> <span class="nav-text">2.5用代码实现有穷自动机</span></a></li></ol></li></ol></div>
             
 
           </div>
