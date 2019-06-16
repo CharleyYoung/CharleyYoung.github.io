@@ -110,7 +110,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/NFA转DFA.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/minDFA_origin.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/minDFA_final.png">
-<meta property="og:updated_time" content="2019-06-16T07:49:47.517Z">
+<meta property="og:updated_time" content="2019-06-16T07:51:40.105Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -357,7 +357,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-16 16:49:47" itemprop="dateModified" datetime="2019-06-16T16:49:47+09:00">2019-06-16</time>
+                <time title="修改时间：2019-06-16 16:51:40" itemprop="dateModified" datetime="2019-06-16T16:51:40+09:00">2019-06-16</time>
               
             
           </span>
@@ -492,7 +492,7 @@
 <p>这样由NFA构造DFA的子集构造算法如下<br>1.计算M的初始状态$s_0$的$\epsilon$-闭包，令其作为$\stackrel{——}{M}$的初始状态$\stackrel{-}{s_0}$<br>2.对$\stackrel{——}{S}$中尚未标记的状态$\stackrel{-}{s_i}=\{s_{i1},s_{i2},…,s_{im}\}$,求出从它们出发的转换和转换到达的新状态<br>3.重复步骤2直到$\stackrel{——}{S}$中没有新状态<br>4.令$\stackrel{——}{A}=\{\stackrel{-}{s_i} | \stackrel{-}{s_i}\cap A \neq \emptyset\}$<br>示例如下图<br><img src="/2019/06/13/Compilation/NFA转DFA.png" alt="NFA转DFA">  </p>
 <h4 id="2-4-3将DFA中的状态最小化"><a href="#2-4-3将DFA中的状态最小化" class="headerlink" title="2.4.3将DFA中的状态最小化"></a>2.4.3将DFA中的状态最小化</h4><p><strong>结论：</strong>对于任何给定的DFA，存在一个$\color{red}{含有最少状态与之等价}的DFA$，而且这个最小状态的DFA在同构意义下是唯一的</p>
 <h5 id="2-4-3-1如何找到最小化的DFA？"><a href="#2-4-3-1如何找到最小化的DFA？" class="headerlink" title="2.4.3.1如何找到最小化的DFA？"></a>2.4.3.1如何找到最小化的DFA？</h5><p>将识别功能相同的状态合并为一个状态，通过状态等价类划分来实现  </p>
-<p>对于任意给定的输入串$w$，若DFA分别从状态$s_1$和$s_2$出发，对于是否接受$w$有相同的结论，则称状态$\color{red}{s_1和s_2位于同一个等价类}$，否则称状态$s_1$和$s_2$是可区分的<br>DFA最小化的算法步骤为<br>1.将状态集合$S$分为两个等价类：$A$和$S-A$<br>2.细分等价类：对于当前划分的某个等价类$K$，$s_1,s_2\in K$，如果满足<br>    2.1.$\exist a,s_1或s_2中的一个\color{red}{无法识别a}$<br>    2.2.$\exist a,s_1或s_2识别a后到达的状态分别在目前\color{red}{划分的不同等价类中}$<br>那么$K$就划分为不同的等价类$K_i,K_j,使得s_1\in K_i,s_2\in K_j$<br>3.递归上述步骤2中细分等价类的工作，直到所有等价类都不能再细分为止  </p>
+<p>对于任意给定的输入串$w$，若DFA分别从状态$s_1$和$s_2$出发，对于是否接受$w$有相同的结论，则称状态$\color{red}{s_1和s_2位于同一个等价类}$，否则称状态$s_1$和$s_2$是可区分的<br>DFA最小化的算法步骤为<br>1.将状态集合$S$分为两个等价类：$A$和$S-A$<br>2.细分等价类：对于当前划分的某个等价类$K$，$s_1,s_2\in K$，如果满足<br>    2.1. $\exist a,s_1或s_2中的一个\color{red}{无法识别a}$<br>    2.2. $\exist a,s_1或s_2识别a后到达的状态分别在目前\color{red}{划分的不同等价类中}$<br>那么$K$就划分为不同的等价类$K_i,K_j,使得s_1\in K_i,s_2\in K_j$<br>3.递归上述步骤2中细分等价类的工作，直到所有等价类都不能再细分为止  </p>
 <p>例题.将下列DFA化简为最小化DFA<br><img src="/2019/06/13/Compilation/minDFA_origin.png" alt="sample"></p>
 <p>1.首先将状态集划分为两个等价类$\{4\},\{0,1,2,3\}$<br>2.对于输入符号a，b<br>$T(0,a)=1, T(1,a)=1, T(2,a)=1, T(3,a)=1$<br>$T(0,b)=2, T(1,b)=3, T(2,b)=2, T(3,b)=4$<br>此时$\{0,1,2,3\}$被符号b分割为两个等价类$\{0,1,2\},\{3\}$<br>,此时一共有三个状态集$\{4\},\{0,1,2\},\{3\}$<br>3.观察2的结果，可知状态集$\{0,1,2\}$被b继续分割为$\{0,2\},\{1\}$<br>4.此时一共有四个状态集$\{4\},\{0,2\},\{3\},\{1\}$，最后求得的状态机如下图<br><img src="/2019/06/13/Compilation/minDFA_final.png" alt="final"></p>
 <h3 id="2-5用代码实现有穷自动机"><a href="#2-5用代码实现有穷自动机" class="headerlink" title="2.5用代码实现有穷自动机"></a>2.5用代码实现有穷自动机</h3>
