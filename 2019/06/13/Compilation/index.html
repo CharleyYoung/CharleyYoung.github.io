@@ -139,7 +139,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/A_LR_DFA.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/LR_AnaTable.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/LR_stack.png">
-<meta property="og:updated_time" content="2019-06-19T13:15:04.943Z">
+<meta property="og:updated_time" content="2019-06-19T13:18:26.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-19 22:15:04" itemprop="dateModified" datetime="2019-06-19T22:15:04+09:00">2019-06-19</time>
+                <time title="修改时间：2019-06-19 22:18:26" itemprop="dateModified" datetime="2019-06-19T22:18:26+09:00">2019-06-19</time>
               
             
           </span>
@@ -606,7 +606,7 @@
 <p><strong>状态转移函数$GO(I,x)$的定义如下：</strong><br>1.$I$是一个项目集，$x\in\{V_N\cup V_T\}$<br>2.$GO(I,x)=Closure(J)$,其中$J$是$I$识别输入符号$x$后到达的项目集，即$J=\{A\rightarrow\alpha x.\beta|A\rightarrow\alpha\ .x\beta\in I\}$  </p>
 <p><strong>基于闭包函数$Closure(I)$和转换函数$GO(I,x)$构造识别文法活前缀的DFA的算法如下：</strong><br>1.项目集$Closure(\{S’\rightarrow .S \})$为DFA的初态<br>2.输入字符集合：包括终结符、非终结符<br>3.设$I$是DFA中一个已存在的状态(项目集)，若存在$A\rightarrow\alpha.x\beta\in I$，则对$x\in V_N\cup V_T$ 计算$GO(I,x)=Closure(J)$,将项目集$Closure(J)$当做DFA的一个新状态加入DFA状态集，同时将转换函数$GO(I,x)=Closure(J)$作为DFA的转换函数<br>4.重复2直至的DFA的状态集中不产生新的状态(项目集)为止<br>5.含有项目$U\rightarrow u.$的项目集,作为DFA的终态  </p>
 <p>我们来看一个例子，对于下图所示的拓广文法：<br><img src="/2019/06/13/Compilation/LR_DFA_sample.png" alt="文法"><br>如下图所示为求得的其对应的$LR(0)$项目集合的DFA<br><img src="/2019/06/13/Compilation/LR_DFA.png" alt="DFA">  </p>
-<h5 id="LR-0-分析表的构造"><a href="#LR-0-分析表的构造" class="headerlink" title="$LR(0)$分析表的构造"></a>$LR(0)$分析表的构造</h5><p><strong>由识别活前缀的DFA构造LR(0)分析表的方法</strong><br>1.设状态$i,j$，若$GO(i,x)=j$，对于状态$i$中的项目$A\rightarrow\alpha .x\beta$,若$x\in V_T$,则置$Action[i,x]=S_j$,若$x\in V_N$,则置$Action[i,x]=j$<br>2.对于终态$i$中的项目$A\rightarrow\alpha .$,若<br>$A\rightarrow\alpha$是$G$中第$k$个产生式，则$\color{red}{对所有输入符号x\in V_T(包括$)}$,均置$Action[i,x]=r_k$<br>3.若终态$i$含项目$S’\rightarrow S.$,则置$Action[i,’$‘]=acc(‘$‘表示输入串结束符)$<br>4.其他情况均置错  </p>
+<h5 id="LR-0-分析表的构造"><a href="#LR-0-分析表的构造" class="headerlink" title="$LR(0)$分析表的构造"></a>$LR(0)$分析表的构造</h5><p><strong>由识别活前缀的DFA构造LR(0)分析表的方法</strong><br>1.设状态$i,j$，若$GO(i,x)=j$，对于状态$i$中的项目$A\rightarrow\alpha .x\beta$,若$x\in V_T$,则置$Action[i,x]=S_j$,若$x\in V_N$,则置$Action[i,x]=j$<br>2.对于终态$i$中的项目$A\rightarrow\alpha .$,若<br>$A\rightarrow\alpha$是$G$中第$k$个产生式，则$\color{red}{对所有输入符号x\in V_T(包括$)}$,均置$Action[i,x]=r_k$<br>3.若终态$i$含项目$S’\rightarrow S.$,则置$\color{black}{Action[i,$]=acc($表示输入串结束符)}$<br>4.其他情况均置错  </p>
 <p>来看看文法$A\rightarrow (A)|a$对应的$LR(0)$项目集合的DFA<br><img src="/2019/06/13/Compilation/A_LR_DFA.png" alt="文法A的DFA"><br>如下所示为文法$A\rightarrow (A)|a$对应的$LR(0)$分析表<br><img src="/2019/06/13/Compilation/LR_AnaTable.png" alt="文法A的分析表"><br>用栈来表示识别字符((a))是否合法的过程为<br><img src="/2019/06/13/Compilation/LR_stack.png" alt="stack">  </p>
 
       
