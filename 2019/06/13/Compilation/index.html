@@ -139,7 +139,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/A_LR_DFA.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/LR_AnaTable.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/LR_stack.png">
-<meta property="og:updated_time" content="2019-06-19T13:18:26.008Z">
+<meta property="og:updated_time" content="2019-06-20T00:14:35.398Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -386,7 +386,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-19 22:18:26" itemprop="dateModified" datetime="2019-06-19T22:18:26+09:00">2019-06-19</time>
+                <time title="修改时间：2019-06-20 09:14:35" itemprop="dateModified" datetime="2019-06-20T09:14:35+09:00">2019-06-20</time>
               
             
           </span>
@@ -599,7 +599,8 @@
 <h3 id="自下而上的语法分析（本章较难不会出大题）"><a href="#自下而上的语法分析（本章较难不会出大题）" class="headerlink" title="自下而上的语法分析（本章较难不会出大题）"></a>自下而上的语法分析（本章较难不会出大题）</h3><p><strong>定义：</strong> 从输入单词序列开始，自左至右逐步进行归约，试图将其归约为文法的开始符号<br>例如对如下文法$G: S\rightarrow cAd, A\rightarrow ab, A\rightarrow a$，采用自下而上的语法分析方法判断字符串cabd是否合法的步骤为:<br>1.$c\underline{ab}d\Rightarrow cAd$<br>2.$\underline{cAd}\Rightarrow S$  </p>
 <p>$\color{red}{自左至右规约是规范（最右）推导的逆过程, 称之为规范规约}$<br>为了方便对自下而上的语法分析方法进行描述，本章将每次规约的子串称为$\color{red}{句柄}$  </p>
 <h4 id="LR分析概览"><a href="#LR分析概览" class="headerlink" title="LR分析概览"></a>LR分析概览</h4><p>LR分析法是一种有效的自下而上的语法分析技术，它能适用于大部分上下文无关文法的分析，一般叫$LR(k)$分析方法，其中<br>1.$L$是指自左向右分析输入单词序列<br>2.$R$是指分析过程都是构造最右(Right)推导的逆过程$\color{red}{（规约规范）}$<br>3.括号中的k是指在决定当前分析动作时向右看的单词个数  </p>
-<h4 id="LR-0-项目的有穷自动机与-LR-0-分析"><a href="#LR-0-项目的有穷自动机与-LR-0-分析" class="headerlink" title="$LR(0)$项目的有穷自动机与$LR(0)$分析"></a>$LR(0)$项目的有穷自动机与$LR(0)$分析</h4><p><strong>项目的定义：</strong> 对于文法$G$，其产生式的右部添加一个特殊符号“.”就构成文法的一个$LR(0)$项目，简称$\color{red}{项目}$  </p>
+<h4 id="LR-0-项目的有穷自动机与-LR-0-分析"><a href="#LR-0-项目的有穷自动机与-LR-0-分析" class="headerlink" title="$LR(0)$项目的有穷自动机与$LR(0)$分析"></a>$LR(0)$项目的有穷自动机与$LR(0)$分析</h4><p><strong>$LR(0)$文法：</strong> 若一个文法$G$的任一项目集中的所有项目都是相容的（即$LR(0)$分析表表项的元素至多只有一个）， 则称文法$G$为$LR(0)$文法</p>
+<p><strong>项目的定义：</strong> 对于文法$G$，其产生式的右部添加一个特殊符号“.”就构成文法的一个$LR(0)$项目，简称$\color{red}{项目}$  </p>
 <h5 id="构造识别活前缀的NFA"><a href="#构造识别活前缀的NFA" class="headerlink" title="构造识别活前缀的NFA"></a>构造识别活前缀的NFA</h5><p>考虑文法$S`\rightarrow S, S\rightarrow (S)S|\epsilon$对应的$LR(0)$项目的NFA如下图所示<br><img src="/2019/06/13/Compilation/LR_sample.png" alt="LR"></p>
 <h5 id="构造识别活前缀的DFA"><a href="#构造识别活前缀的DFA" class="headerlink" title="构造识别活前缀的DFA"></a>构造识别活前缀的DFA</h5><p>基于$Closure(I)$以及转移函数$GO(I,x)$构造识别活前缀的DFA  </p>
 <p><strong>对于拓广文法G`的一个LR(0)项目集合I的闭包函数Closure（I）的定义如下：</strong><br>1.令$Closure(I)=I$<br>2.若项目$A\rightarrow\alpha . B\beta\in Closure(I),B\in V_N$,则$Closure(I)=Closure(I)\cup\{B\rightarrow .\gamma\}$<br>3.重复步骤2直至$Closure(I)$不增加新项目为止<br>由上述步骤可以看出$Closure(I)$是一个$LR(0)$项目集合  </p>
@@ -608,6 +609,7 @@
 <p>我们来看一个例子，对于下图所示的拓广文法：<br><img src="/2019/06/13/Compilation/LR_DFA_sample.png" alt="文法"><br>如下图所示为求得的其对应的$LR(0)$项目集合的DFA<br><img src="/2019/06/13/Compilation/LR_DFA.png" alt="DFA">  </p>
 <h5 id="LR-0-分析表的构造"><a href="#LR-0-分析表的构造" class="headerlink" title="$LR(0)$分析表的构造"></a>$LR(0)$分析表的构造</h5><p><strong>由识别活前缀的DFA构造LR(0)分析表的方法</strong><br>1.设状态$i,j$，若$GO(i,x)=j$，对于状态$i$中的项目$A\rightarrow\alpha .x\beta$,若$x\in V_T$,则置$Action[i,x]=S_j$,若$x\in V_N$,则置$Action[i,x]=j$<br>2.对于终态$i$中的项目$A\rightarrow\alpha .$,若<br>$A\rightarrow\alpha$是$G$中第$k$个产生式，则$\color{red}{对所有输入符号x\in V_T(包括$)}$,均置$Action[i,x]=r_k$<br>3.若终态$i$含项目$S’\rightarrow S.$,则置$\color{black}{Action[i,$]=acc($表示输入串结束符)}$<br>4.其他情况均置错  </p>
 <p>来看看文法$A\rightarrow (A)|a$对应的$LR(0)$项目集合的DFA<br><img src="/2019/06/13/Compilation/A_LR_DFA.png" alt="文法A的DFA"><br>如下所示为文法$A\rightarrow (A)|a$对应的$LR(0)$分析表<br><img src="/2019/06/13/Compilation/LR_AnaTable.png" alt="文法A的分析表"><br>用栈来表示识别字符((a))是否合法的过程为<br><img src="/2019/06/13/Compilation/LR_stack.png" alt="stack">  </p>
+<p>$LR(0)$分析算法步骤<br>1.将输入串的左边界($)进符号栈和初始状态0进状态栈<br>2.根据状态栈栈顶状态$i$和当前输入符号$a$查$Action$表进行如下工作</p>
 
       
     </div>
