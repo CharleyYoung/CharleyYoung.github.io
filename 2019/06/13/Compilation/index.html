@@ -146,7 +146,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/label.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/while-stmt-picture.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/code-situation.png">
-<meta property="og:updated_time" content="2019-06-21T12:26:16.833Z">
+<meta property="og:updated_time" content="2019-06-21T12:28:50.657Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-21 21:26:16" itemprop="dateModified" datetime="2019-06-21T21:26:16+09:00">2019-06-21</time>
+                <time title="修改时间：2019-06-21 21:28:50" itemprop="dateModified" datetime="2019-06-21T21:28:50+09:00">2019-06-21</time>
               
             
           </span>
@@ -723,9 +723,57 @@
 </tbody>
 </table>
 </div>
-<p>在C语言中，采用以函数（或过程）为单位的动态存储分配方案；$\color{red}{过程的活动记录(activation record,AR)}$是一段连续的存储区，用于存放函数的一次执行所需要的信息，当调用或激活函数时，必须为被调用函数的活动记录分配空间<br>活动记录存放的信息应该至少包含以下几个部分：<br>部分 | 解释<br>:—-:|:—-:<br>自变量（参数）空间 | 存放主调函数为被调函数提供的实参信息<br>用作薄记信息的空间，包含了返回地址 | 用于指向$\color{red}{主调函数的活动记录的控制链}$和返回地址<br>用作局部数据的空间 | 存放本次执行中的局部数据<br>用作局部临时变量的空间 | 存放目标程序临时变量的值  </p>
+<p>在C语言中，采用以函数（或过程）为单位的动态存储分配方案；$\color{red}{过程的活动记录(activation record,AR)}$是一段连续的存储区，用于存放函数的一次执行所需要的信息，当调用或激活函数时，必须为被调用函数的活动记录分配空间<br>活动记录存放的信息应该至少包含以下几个部分：  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">部分</th>
+<th style="text-align:center">解释  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">自变量（参数）空间</td>
+<td style="text-align:center">存放主调函数为被调函数提供的实参信息  </td>
+</tr>
+<tr>
+<td style="text-align:center">用作薄记信息的空间，包含了返回地址</td>
+<td style="text-align:center">用于指向$\color{red}{主调函数的活动记录的控制链}$和返回地址  </td>
+</tr>
+<tr>
+<td style="text-align:center">用作局部数据的空间</td>
+<td style="text-align:center">存放本次执行中的局部数据  </td>
+</tr>
+<tr>
+<td style="text-align:center">用作局部临时变量的空间</td>
+<td style="text-align:center">存放目标程序临时变量的值  </td>
+</tr>
+</tbody>
+</table>
+</div>
 <p><strong>控制链：</strong> 指向调用函数活动记录的一个地址  </p>
-<h3 id="基于栈的运行时环境"><a href="#基于栈的运行时环境" class="headerlink" title="基于栈的运行时环境"></a>基于栈的运行时环境</h3><p>在一个$\color{red}{所有函数都是全局的}$、函数$\color{red}{定义不允许嵌套}$，但允许函数递归调用的程序设计语言（如C语言）中，基于栈的动态运行时有两个指针<br>指针 | 说明<br>:—-:|:—-:<br>sp:栈顶部指针 | 对于x86系统来说，它采用sp或esp寄存器存储栈顶部的地址<br>fp:控制链指针 | 存储当前活动记录的控制链，对于x86系统，$\color{red}{它采用bp或ebp寄存器}$存储当前活动记录的控制链，其作用如下：1.通过该指针可以访问主调函数的活动记录；即允许在当前的被调函数执行完毕时，用它来恢复主调函数的活动记录2.$\color{red}{通过该指针可以访问当前执行函数的实参和局部变量(通过上下偏移地址的方式)}$  </p>
+<h3 id="基于栈的运行时环境"><a href="#基于栈的运行时环境" class="headerlink" title="基于栈的运行时环境"></a>基于栈的运行时环境</h3><p>在一个$\color{red}{所有函数都是全局的}$、函数$\color{red}{定义不允许嵌套}$，但允许函数递归调用的程序设计语言（如C语言）中，基于栈的动态运行时有两个指针  </p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">指针</th>
+<th style="text-align:center">说明  </th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">sp:栈顶部指针</td>
+<td style="text-align:center">对于x86系统来说，它采用sp或esp寄存器存储栈顶部的地址  </td>
+</tr>
+<tr>
+<td style="text-align:center">fp:控制链指针</td>
+<td style="text-align:center">存储当前活动记录的控制链，对于x86系统，$\color{red}{它采用bp或ebp寄存器}$存储当前活动记录的控制链，其作用如下：1.通过该指针可以访问主调函数的活动记录；即允许在当前的被调函数执行完毕时，用它来恢复主调函数的活动记录2.$\color{red}{通过该指针可以访问当前执行函数的实参和局部变量(通过上下偏移地址的方式)}$  </td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>当一个函数被调用时，在栈顶为该函数分配所需的数据空间(过程活动记录)如下：<br>1.将实参的值压入在该函数对应的新活动记录中<br>2.将被调函数执行完毕后的返回地址压入在新的活动记录中<br>3.完成到被调用的过程代码一个转移<br>4.将主调函数的fp作为控制链压入到新的活动记录中<br>5.改变fp以使其指向新的活动记录(将sp复制到fp中)<br>6.将该函数的局部变量和局部临时变量压入到新的活动记录中  </p>
 <p>当被调函数执行完毕返回时，其对应的活动记录从栈中弹出的过程：<br>1.将fp复制到sp中<br>2.将控制链装载到fp中<br>3.完成到返回地址主调函数的一个转移<br>4.改变sp以弹出实参  </p>
 <h4 id="目标代码生成必须"><a href="#目标代码生成必须" class="headerlink" title="目标代码生成必须"></a>目标代码生成必须</h4><p>目标代码生成必须支持变量和临时变量的实际单位，并增加支持运行时环境所必须的代码  </p>
