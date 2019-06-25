@@ -146,7 +146,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/label.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/while-stmt-picture.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/code-situation.png">
-<meta property="og:updated_time" content="2019-06-25T03:21:23.715Z">
+<meta property="og:updated_time" content="2019-06-25T10:59:01.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-25 12:21:23" itemprop="dateModified" datetime="2019-06-25T12:21:23+09:00">2019-06-25</time>
+                <time title="修改时间：2019-06-25 19:59:01" itemprop="dateModified" datetime="2019-06-25T19:59:01+09:00">2019-06-25</time>
               
             
           </span>
@@ -605,7 +605,8 @@
 <p>例如对如下简单直接左递归$A\rightarrow A\alpha | \beta$,将其改造为$A\rightarrow \beta B$,$B\rightarrow\alpha B|\epsilon$  </p>
 <p>再看产生式$U\rightarrow xy|xw|…|xz$,会造成在识别$s$的时候陷入有多个替换产生式的问题，此时提取公共因子得到$U\rightarrow x(y|w|…|z)$,在用新的非终结符V替代得到$U\rightarrow xV$，$V\rightarrow y|w|…|z$  </p>
 <h3 id="自下而上的语法分析（本章较难不会出大题）"><a href="#自下而上的语法分析（本章较难不会出大题）" class="headerlink" title="自下而上的语法分析（本章较难不会出大题）"></a>自下而上的语法分析（本章较难不会出大题）</h3><p><strong>定义：</strong> 从输入单词序列开始，自左至右逐步进行归约，试图将其归约为文法的开始符号<br>例如对如下文法$G: S\rightarrow cAd, A\rightarrow ab, A\rightarrow a$，采用自下而上的语法分析方法判断字符串cabd是否合法的步骤为:<br>1.$c\underline{ab}d\Rightarrow cAd$<br>2.$\underline{cAd}\Rightarrow S$  </p>
-<p>$\color{red}{自左至右规约是规范（最右）推导的逆过程, 称之为规范规约}$<br>为了方便对自下而上的语法分析方法进行描述，本章将每次规约的子串称为$\color{red}{句柄}$  </p>
+<p>$\color{red}{自左至右规约是规范（最右）推导的逆过程, 称之为规范规约}$<br>为了方便对自下而上的语法分析方法进行描述，本章将每次规约的子串称为$\color{red}{句柄}，也就是最左直接短语（在规范推导中，最先被规约的字串）$  </p>
+<p><strong>直接短语：</strong> 若有$S\Rightarrow\star\alpha A\delta\Rightarrow\alpha\beta\delta, \alpha,\beta,\delta\in(V_T\cup V_N)^\star,A\in V_N$,则称$\beta$是句型$\alpha,\beta,\delta$相对于非终结符A的直接短语  </p>
 <h4 id="LR分析概览"><a href="#LR分析概览" class="headerlink" title="LR分析概览"></a>LR分析概览</h4><p>LR分析法是一种有效的自下而上的语法分析技术，它能适用于大部分上下文无关文法的分析，一般叫$LR(k)$分析方法，其中<br>1.$L$是指自左向右分析输入单词序列<br>2.$R$是指分析过程都是构造最右(Right)推导的逆过程$\color{red}{（规约规范）}$<br>3.括号中的k是指在决定当前分析动作时向右看的单词个数  </p>
 <h4 id="LR-0-项目的有穷自动机与-LR-0-分析"><a href="#LR-0-项目的有穷自动机与-LR-0-分析" class="headerlink" title="$LR(0)$项目的有穷自动机与$LR(0)$分析"></a>$LR(0)$项目的有穷自动机与$LR(0)$分析</h4><p><strong>$LR(0)$文法：</strong> 若一个文法$G$的任一项目集中的所有项目都是相容的（即$LR(0)$分析表表项的元素至多只有一个）， 则称文法$G$为$LR(0)$文法</p>
 <p><strong>项目的定义：</strong> 对于文法$G$，其产生式的右部添加一个特殊符号“.”就构成文法的一个$LR(0)$项目，简称$\color{red}{项目}$  </p>
