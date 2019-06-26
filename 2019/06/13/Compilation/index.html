@@ -146,7 +146,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/label.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/while-stmt-picture.png">
 <meta property="og:image" content="http://yoursite.com/2019/06/13/Compilation/code-situation.png">
-<meta property="og:updated_time" content="2019-06-25T10:59:01.110Z">
+<meta property="og:updated_time" content="2019-06-26T01:05:34.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="编译原理重点整理">
 <meta name="twitter:description" content="整理编译原理课程的知识点">
@@ -393,7 +393,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-25 19:59:01" itemprop="dateModified" datetime="2019-06-25T19:59:01+09:00">2019-06-25</time>
+                <time title="修改时间：2019-06-26 10:05:34" itemprop="dateModified" datetime="2019-06-26T10:05:34+09:00">2019-06-26</time>
               
             
           </span>
@@ -651,6 +651,7 @@
 <h4 id="SLR-1-分析"><a href="#SLR-1-分析" class="headerlink" title="$SLR(1)$分析"></a>$SLR(1)$分析</h4><p>通常的程序设计语言一般不能满足$LR(0)$文法的要求，我们来看下面的例子，$S`\rightarrow S, S\rightarrow (S)S|\epsilon$<br>上述文法的状态集合DFA如下图所示<br><img src="/2019/06/13/Compilation/SLR_question_DFA.png" alt="DFA"><br>其分析表为<br><img src="/2019/06/13/Compilation/SLR_question_table.png" alt="table"><br>从分析表中可以看到，表中出现了多重定义的元素，即出现了冲突，此时引入一个新的方法，即$SLR(1)$<br>在$SLR(1)$文法中，向右看一个符号，所以属于$LR(1)$方法。而它仅在发生冲突时才向右看一个符号，为了与普通的$LR(1)$方法区别，将其称为简单的$LR(1)$方法-$SLR(1)$方法<br>$SLR(1)$文法与$LR(0)$文法识别其活前缀项目集合的DFA是一样的，区别在于它们$\color{red}{构造分析表的规则不一样}$,SLR(1)分析与LR(0)分析的算法步骤一致  </p>
 <p><strong>任意文法$G[S]$的$SLR(1)$分析表的构造规则如下</strong><br>1.设状态$j$是状态$i$输入符号$x$后到达的状态，即$GO(i,x)=j$,对于状态$i$中的项目$A\rightarrow\alpha .x\beta$,若$x\in V_T$，则置$Action[i,x]=S_j$若$x\in V_N$，则置$Action[i,x]=j$<br>2.对于状态$i$中的归约项目：$A\rightarrow\alpha .\in i$,若$A\rightarrow\alpha$为文法的第$j$个产生式，则对于$\color{red}{任意的输入符号a,a\in Follow(A),置Action[i,a]=r_j}$<br>3.若$S\rightarrow\alpha .\in i$，则置$\color{black}{Action[i,$]=acc}$<br>4.其余情况均置错  </p>
 <h4 id="一般的-LR-1-分析算法"><a href="#一般的-LR-1-分析算法" class="headerlink" title="一般的$LR(1)$分析算法"></a>一般的$LR(1)$分析算法</h4><p>此小节过于复杂，建议看ppt  </p>
+<p><strong>对于文法$G[S]$的$LR(1)$分析表的构造规则如下</strong><br>1.对于$[A\rightarrow\alpha .x\beta, a]\in i$且$GO(i,x)=j$,若$x\in V_T$，则置$Action[i,x]=S_j$若$x\in V_N$，则置$Action[i,x]=j$<br>2.对于$[A\rightarrow\alpha .,a]\in i$,若$A\rightarrow\alpha$为文法的第$j$个产生式，则对于$\color{red}{任意的输入符号a,a\in Follow(A),置Action[i,a]=r_j}$<br>3.若$S\rightarrow\alpha .\in i$，则置$\color{black}{Action[i,$]=acc}$<br>4.其余情况均置错  </p>
 <h4 id="LALR-1-分析算法"><a href="#LALR-1-分析算法" class="headerlink" title="$LALR(1)$分析算法"></a>$LALR(1)$分析算法</h4><p><strong>$LR(1)$的问题：</strong> $LR(1)$分析比$SLR(1)$分析的能力有明显的提高，但是$LR(1)$也有缺点：分析表状态数过大，使分析的效率降低。为解决二者之间的能力与效率之间的矛盾，目前最流行的$LALR(1)$分析是最佳方案<br>$LALR(1)$的主要方法是通过$LR(1)$和$LR(0)$的同心集来简化$LR(1)$的DFA状态从而简化流程  </p>
 <h2 id="语义分析"><a href="#语义分析" class="headerlink" title="语义分析"></a>语义分析</h2><hr>
 <p>程序设计的语义分为静态语义和动态语义两种，其中静态语义是指$\color{red}{在编译阶段能够检查的语义}$,动态语义则是$\color{red}{在目标程序运行阶段能够检查的语义}$<br><strong>语义分析的任务：</strong> $\color{red}{计算各类语法成分的语义信息(属性信息)}$，一般将收集的语义信息存放到相应的信息表中，在编译程序中$\color{red}{符号表}$是用来存放源程序中标示符相关属性(语义)信息的一种信息表  </p>
