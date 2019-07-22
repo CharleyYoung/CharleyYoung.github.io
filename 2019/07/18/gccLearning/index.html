@@ -105,7 +105,7 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/2019/07/18/gccLearning/DHCP.jpg">
 <meta property="og:image" content="http://yoursite.com/2019/07/18/gccLearning/DHCP_Interaction.png">
-<meta property="og:updated_time" content="2019-07-22T01:40:15.466Z">
+<meta property="og:updated_time" content="2019-07-22T05:54:27.068Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="实习期间的一些知识">
 <meta name="twitter:description" content="记录在公司实习期间的学习过程以及遇到的问题">
@@ -352,7 +352,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-22 10:40:15" itemprop="dateModified" datetime="2019-07-22T10:40:15+09:00">2019-07-22</time>
+                <time title="修改时间：2019-07-22 14:54:27" itemprop="dateModified" datetime="2019-07-22T14:54:27+09:00">2019-07-22</time>
               
             
           </span>
@@ -473,7 +473,9 @@
 <h3 id="DHCP-Server"><a href="#DHCP-Server" class="headerlink" title="DHCP Server"></a>DHCP Server</h3><p>DHCP Server是DHCP服务的提供者，它通过DHCP报文与DHCP Client沟通，为各种类型的用户分配合适的IP地址，并根据需要进行地址池和其他网络参数的相关配置。DHCP Server的主要功能为  </p>
 <h4 id="创建和删除地址池"><a href="#创建和删除地址池" class="headerlink" title="创建和删除地址池"></a>创建和删除地址池</h4><p>网络管理员在DHCP Server上创建地址池，当Client提出请求的时候，从地址池中选出空闲的IP地址以及其他参数给Client，$\color{red}{一个SERVER可能有一个或多个地址池}$  </p>
 <h4 id="配置地址池相关参数"><a href="#配置地址池相关参数" class="headerlink" title="配置地址池相关参数"></a>配置地址池相关参数</h4><p>系统可以对地址池配置DNS、Domain Name、WINS、netbios-node-type等参数，用于Client的网络配置  </p>
-<h4 id="处理Client发来的DHCP报文"><a href="#处理Client发来的DHCP报文" class="headerlink" title="处理Client发来的DHCP报文"></a>处理Client发来的DHCP报文</h4><p>DHCP Server一共接收以下5种DHCP报文<br>1.DHCP_DISCOVER<br>2.DHCP_REQUEST<br>3.DHCP_DECLINE<br>4.DHCP_RELEASE<br>5.DHCP_INFORM  </p>
+<h4 id="处理Client发来的DHCP报文"><a href="#处理Client发来的DHCP报文" class="headerlink" title="处理Client发来的DHCP报文"></a>处理Client发来的DHCP报文</h4><p>DHCP Server一共接收以下5种DHCP报文<br>1.DHCP_DISCOVER<br>2.DHCP_REQUEST<br>3.DHCP_DECLINE<br>4.DHCP_RELEASE<br>5.DHCP_INFORM<br>对每一种报文的处理如下  </p>
+<h5 id="DHCP-DISCOVER"><a href="#DHCP-DISCOVER" class="headerlink" title="DHCP_DISCOVER"></a>DHCP_DISCOVER</h5><p>1.检查地址池是否有可分配地址，如果没有，则向系统管理员报告；如果有，按照如下优先顺序进行选择：①.当前绑定中的当前地址；②.Client以前的地址（现在已经expire或是release了，并且available的）③.在Requested IP Address option中并且valid and available的；④.从地址池中分配一个可用地址，根据消息所接收到的子网字段或是根据中继代理的地址进行分配<br>2.选定租约：根据选定IP地址来决定用户的绑定租约<br>3.处理Client的其他网络参数<br>4.发送回应的OFFER报文  </p>
+<h5 id="DHCP-REQUEST"><a href="#DHCP-REQUEST" class="headerlink" title="DHCP_REQUEST"></a>DHCP_REQUEST</h5><p>Request的来源：<br>1.Client响应Server的DHCP_OFFER<br>2.Client确认一个先前分配的IP地址<br>3.Clent请求延长某个网络地址的LEASE<br>如果DHCP_REQUEST请求包含一个$\color{red}{SERVER\ \ IDENTIFIER\ \ OPTION}$，则是情形1，否则是情形2或3<br>如果Request中包含有CLIENT_IDENTIFIER或者LIST_OF_REQUESTED_PARAMETERS，那么Cient必须在以后的报文中都包含它们（或者其中的一个）  </p>
 
       
     </div>
@@ -627,7 +629,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉GCC的基本操作"><span class="nav-number">1.</span> <span class="nav-text">熟悉GCC的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉Vim的基本操作"><span class="nav-number">2.</span> <span class="nav-text">熟悉Vim的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识DHCP技术（其实计网学过）"><span class="nav-number">3.</span> <span class="nav-text">初识DHCP技术（其实计网学过）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于DHCP"><span class="nav-number">3.1.</span> <span class="nav-text">关于DHCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP报文详解"><span class="nav-number">3.2.</span> <span class="nav-text">DHCP报文详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP交互过程"><span class="nav-number">3.3.</span> <span class="nav-text">DHCP交互过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP特点"><span class="nav-number">3.4.</span> <span class="nav-text">DHCP特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP-Client"><span class="nav-number">3.5.</span> <span class="nav-text">DHCP Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP-Server"><span class="nav-number">3.6.</span> <span class="nav-text">DHCP Server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建和删除地址池"><span class="nav-number">3.6.1.</span> <span class="nav-text">创建和删除地址池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置地址池相关参数"><span class="nav-number">3.6.2.</span> <span class="nav-text">配置地址池相关参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理Client发来的DHCP报文"><span class="nav-number">3.6.3.</span> <span class="nav-text">处理Client发来的DHCP报文</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉GCC的基本操作"><span class="nav-number">1.</span> <span class="nav-text">熟悉GCC的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#熟悉Vim的基本操作"><span class="nav-number">2.</span> <span class="nav-text">熟悉Vim的基本操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#初识DHCP技术（其实计网学过）"><span class="nav-number">3.</span> <span class="nav-text">初识DHCP技术（其实计网学过）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#关于DHCP"><span class="nav-number">3.1.</span> <span class="nav-text">关于DHCP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP报文详解"><span class="nav-number">3.2.</span> <span class="nav-text">DHCP报文详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP交互过程"><span class="nav-number">3.3.</span> <span class="nav-text">DHCP交互过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP特点"><span class="nav-number">3.4.</span> <span class="nav-text">DHCP特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP-Client"><span class="nav-number">3.5.</span> <span class="nav-text">DHCP Client</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DHCP-Server"><span class="nav-number">3.6.</span> <span class="nav-text">DHCP Server</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建和删除地址池"><span class="nav-number">3.6.1.</span> <span class="nav-text">创建和删除地址池</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#配置地址池相关参数"><span class="nav-number">3.6.2.</span> <span class="nav-text">配置地址池相关参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#处理Client发来的DHCP报文"><span class="nav-number">3.6.3.</span> <span class="nav-text">处理Client发来的DHCP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#DHCP-DISCOVER"><span class="nav-number">3.6.3.1.</span> <span class="nav-text">DHCP_DISCOVER</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DHCP-REQUEST"><span class="nav-number">3.6.3.2.</span> <span class="nav-text">DHCP_REQUEST</span></a></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
