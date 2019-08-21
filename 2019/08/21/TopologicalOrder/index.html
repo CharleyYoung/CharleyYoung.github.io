@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Charley_Young">
 <meta property="og:description" content="记录做leetcode上关于拓扑排序的两道题207.课程表和210.课程表II的心得">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-21T06:34:09.989Z">
+<meta property="og:updated_time" content="2019-08-21T06:36:54.168Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="拓扑排序的相关心得">
 <meta name="twitter:description" content="记录做leetcode上关于拓扑排序的两道题207.课程表和210.课程表II的心得">
@@ -332,7 +332,7 @@
                 
               
 
-              <time title="创建时间：2019-08-21 14:58:04 / 修改时间：15:34:09" itemprop="dateCreated datePublished" datetime="2019-08-21T14:58:04+09:00">2019-08-21</time>
+              <time title="创建时间：2019-08-21 14:58:04 / 修改时间：15:36:54" itemprop="dateCreated datePublished" datetime="2019-08-21T14:58:04+09:00">2019-08-21</time>
             
 
             
@@ -372,7 +372,7 @@
 
       
         <p>记录做leetcode上关于拓扑排序的两道题<a href="https://leetcode-cn.com/problems/course-schedule/" target="_blank" rel="noopener">207.课程表</a>和<a href="https://leetcode-cn.com/problems/course-schedule-ii/" target="_blank" rel="noopener">210.课程表II</a>的心得<br><a id="more"></a></p>
-<h2 id="什么是拓扑排序"><a href="#什么是拓扑排序" class="headerlink" title="什么是拓扑排序"></a>什么是拓扑排序</h2><p>对一个<strong>有向无环图</strong> 进行拓扑排序是将$G$中所有顶点排成一个线性序列，使得图中任意一对顶点$u$和$v$，若边$\langel u,v\rangel \in E(G)$，则$u$在线性序列中出现在$v$之前。通常，这样的线性序列称为满足拓扑次序$(Topological Order)$的序列，简称拓扑序列。简单的说，由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序<br>由定义可以看出拓扑排序很适合用来确定一个依赖关系集的顺序，也就是用来解决$AOV$网的问题  </p>
+<h2 id="什么是拓扑排序"><a href="#什么是拓扑排序" class="headerlink" title="什么是拓扑排序"></a>什么是拓扑排序</h2><p>对一个<strong>有向无环图</strong> 进行拓扑排序是将$G$中所有顶点排成一个线性序列，使得图中任意一对顶点$u$和$v$，若边$(u,v)\in E(G)$，则$u$在线性序列中出现在$v$之前。通常，这样的线性序列称为满足拓扑次序$(Topological Order)$的序列，简称拓扑序列。简单的说，由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序<br>由定义可以看出拓扑排序很适合用来确定一个依赖关系集的顺序，也就是用来解决$AOV$网的问题  </p>
 <h2 id="课程表问题"><a href="#课程表问题" class="headerlink" title="课程表问题"></a>课程表问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>现在你总共有 $n$ 门课需要选，记为 $0$ 到 $n-1$</p>
 <p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 $0$，你需要先完成课程 $1$ ，我们用一个匹配来表示他们: $[0,1]$</p>
 <p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？  </p>
