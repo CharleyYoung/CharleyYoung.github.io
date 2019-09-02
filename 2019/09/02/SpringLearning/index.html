@@ -96,17 +96,21 @@
 
 
 
-  <meta name="description" content="对leetcode题目$38.报数$问题实现的一些思路记录">
+  <meta name="description" content="由于之前面试被问及SpringMVC当中的8大注解问题时直接懵逼，开始了解新式SpringMVC框架，同时温习《企业级应用软件开发》课程所学的知识">
 <meta property="og:type" content="article">
-<meta property="og:title" content="leetcode题目“报数”">
-<meta property="og:url" content="http://yoursite.com/2019/04/15/countandsay/index.html">
+<meta property="og:title" content="SpringMVC框架学习与企业级课程知识复习">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/SpringLearning/index.html">
 <meta property="og:site_name" content="Charley_Young">
-<meta property="og:description" content="对leetcode题目$38.报数$问题实现的一些思路记录">
+<meta property="og:description" content="由于之前面试被问及SpringMVC当中的8大注解问题时直接懵逼，开始了解新式SpringMVC框架，同时温习《企业级应用软件开发》课程所学的知识">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-15T10:06:28.000Z">
+<meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/Model1.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/Model2.png">
+<meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/MVC.png">
+<meta property="og:updated_time" content="2019-09-02T05:55:01.116Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="leetcode题目“报数”">
-<meta name="twitter:description" content="对leetcode题目$38.报数$问题实现的一些思路记录">
+<meta name="twitter:title" content="SpringMVC框架学习与企业级课程知识复习">
+<meta name="twitter:description" content="由于之前面试被问及SpringMVC当中的8大注解问题时直接懵逼，开始了解新式SpringMVC框架，同时温习《企业级应用软件开发》课程所学的知识">
+<meta name="twitter:image" content="http://yoursite.com/2019/09/02/SpringLearning/Model1.png">
 
 
 
@@ -114,7 +118,7 @@
 
   
   
-  <link rel="canonical" href="http://yoursite.com/2019/04/15/countandsay/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/02/SpringLearning/">
 
 
 
@@ -124,7 +128,7 @@
   };
 </script>
 
-  <title>leetcode题目“报数” | Charley_Young</title>
+  <title>SpringMVC框架学习与企业级课程知识复习 | Charley_Young</title>
   
 
 
@@ -289,7 +293,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/countandsay/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/02/SpringLearning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Charley_Young">
@@ -306,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">leetcode题目“报数”
+          <h1 class="post-title" itemprop="name headline">SpringMVC框架学习与企业级课程知识复习
 
               
             
@@ -332,9 +336,13 @@
                 
               
 
-              <time title="创建时间：2019-04-15 19:06:28" itemprop="dateCreated datePublished" datetime="2019-04-15T19:06:28+09:00">2019-04-15</time>
+              <time title="创建时间：2019-09-02 13:09:03 / 修改时间：14:55:01" itemprop="dateCreated datePublished" datetime="2019-09-02T13:09:03+09:00">2019-09-02</time>
             
 
+            
+              
+
+              
             
           </span>
 
@@ -367,14 +375,14 @@
       
 
       
-        <p>对leetcode题目$38.报数$问题实现的一些思路记录</p>
+        <p>由于之前面试被问及SpringMVC当中的8大注解问题时直接懵逼，开始了解新式SpringMVC框架，同时温习《企业级应用软件开发》课程所学的知识</p>
 <a id="more"></a>
-<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>报数序列是一个整数序列，按照其中的整数的顺序进行报数，得到下一个数。其前五项如下:  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1.     1</span><br><span class="line">2.     11</span><br><span class="line">3.     21</span><br><span class="line">4.     1211</span><br><span class="line">5.     111221</span><br></pre></td></tr></table></figure>
-<p>1.$1$被读作$”one\ one”$,$“一个一”$，即$11$<br>2.$11$被读作$”two\ one”$,$“两个一”$，即$21$<br>3.其余项依次类推<br>给定一个正整数 n（1 ≤ n ≤ 30），输出报数序列的第 n 项。<br>注意：整数顺序将表示为一个字符串。</p>
-<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>1.仔细观察可知，整数序列的第n项是由其n-1项“翻译”得到的，这样的结构非常适合使用<font color="red">递归</font>来解决问题<br>2.根据给出的5项可以发现一个规律，“翻译”的规则实际上就是<font color="red">统计连续的相同整数的个数</font>  </p>
-<p>根据上述两条发现，可以整理出大致的思路，我们采用递归的方式，每一次取得上一次“翻译”的结果，然后用一个循环来遍历该结果，将其“翻译”得到新的“翻译”并返回结果。实际代码如下</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">countAndSay</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">1</span>) <span class="keyword">return</span> <span class="string">"1"</span>;<span class="comment">//序列第一位是1</span></span><br><span class="line">        String count = countAndSay(n-<span class="number">1</span>);<span class="comment">//递归得到前一次的结果</span></span><br><span class="line">        <span class="keyword">char</span> target = count.charAt(<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">int</span> cnt=<span class="number">1</span>;</span><br><span class="line">        StringBuilder stringBuilder = <span class="keyword">new</span> StringBuilder();<span class="comment">//StringBuilder变量用于存储新的结果</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;count.length();i++)&#123;</span><br><span class="line">            <span class="keyword">char</span> temp = count.charAt(i);</span><br><span class="line">            <span class="keyword">if</span>(target==temp)&#123;<span class="comment">//相同整数计入个数</span></span><br><span class="line">                cnt++;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;<span class="comment">//发现不同整数了，把之前的记录加进结果</span></span><br><span class="line">                stringBuilder.append(cnt);</span><br><span class="line">                stringBuilder.append(target);</span><br><span class="line">                target = temp;</span><br><span class="line">                cnt=<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        stringBuilder.append(cnt).append(target);</span><br><span class="line">        <span class="keyword">return</span> stringBuilder.toString();</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="SpringMVC设计概念"><a href="#SpringMVC设计概念" class="headerlink" title="SpringMVC设计概念"></a>SpringMVC设计概念</h2><h3 id="最初的样子"><a href="#最初的样子" class="headerlink" title="最初的样子"></a>最初的样子</h3><p>在早期的java Web开发中，将所有的操作交由JavaBean来处理，这种模式称为$Model1$<br><img src="/2019/09/02/SpringLearning/Model1.png" alt="Model1">  </p>
+<p>弊端：<br>1.JSP 和 Java Bean 之间严重耦合，Java 代码和 HTML 代码也耦合在了一起<br>2.前端和后端相互依赖，前端需要等待后端完成，后端也依赖前端完成，才能进行有效的测试<br>3.代码难以复用  </p>
+<h3 id="改进后的版本"><a href="#改进后的版本" class="headerlink" title="改进后的版本"></a>改进后的版本</h3><p>将模型和操纵器分离开来，形成早期的MVC模型，称之为Model2<br><img src="/2019/09/02/SpringLearning/Model2.png" alt="Model2"><br><strong>目前个人所参与的项目全部都是采用这种架构，所以并不知晓注解的用法</strong>  </p>
+<h3 id="最新的SpringMVC架构"><a href="#最新的SpringMVC架构" class="headerlink" title="最新的SpringMVC架构"></a>最新的SpringMVC架构</h3><p>为解决持久层中一直未处理好的数据库事务的编程，又为了迎合 NoSQL 的强势崛起，Spring MVC 给出了方案<br><img src="/2019/09/02/SpringLearning/MVC.png" alt="SpringMVC">  </p>
+<p>特点：<br>1.结构松散，几乎可以在 Spring MVC 中使用各类视图<br>2.松耦合，使得各个模块分离<br>3.与Spring无缝集成  </p>
+
       
     </div>
 
@@ -404,8 +412,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/10/prefix/" rel="next" title="最长公共前缀做题记录">
-                <i class="fa fa-chevron-left"></i> 最长公共前缀做题记录
+              <a href="/2019/08/21/TopologicalOrder/" rel="next" title="拓扑排序的相关心得">
+                <i class="fa fa-chevron-left"></i> 拓扑排序的相关心得
               </a>
             
           </div>
@@ -413,10 +421,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/17/maxProfitII/" rel="prev" title="leetcode腾讯精选50题“买卖股票的最佳时期II”">
-                leetcode腾讯精选50题“买卖股票的最佳时期II” <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -531,7 +535,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#思路"><span class="nav-number">2.</span> <span class="nav-text">思路</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC设计概念"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC设计概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最初的样子"><span class="nav-number">1.1.</span> <span class="nav-text">最初的样子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进后的版本"><span class="nav-number">1.2.</span> <span class="nav-text">改进后的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最新的SpringMVC架构"><span class="nav-number">1.3.</span> <span class="nav-text">最新的SpringMVC架构</span></a></li></ol></li></ol></div>
             
 
           </div>
