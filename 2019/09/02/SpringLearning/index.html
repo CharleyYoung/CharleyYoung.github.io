@@ -106,7 +106,7 @@
 <meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/Model1.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/Model2.png">
 <meta property="og:image" content="http://yoursite.com/2019/09/02/SpringLearning/MVC.png">
-<meta property="og:updated_time" content="2019-09-02T05:55:01.116Z">
+<meta property="og:updated_time" content="2020-06-16T15:23:58.961Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SpringMVC框架学习与企业级课程知识复习">
 <meta name="twitter:description" content="由于之前面试被问及SpringMVC当中的8大注解问题时直接懵逼，开始了解新式SpringMVC框架，同时温习《企业级应用软件开发》课程所学的知识">
@@ -336,12 +336,24 @@
                 
               
 
-              <time title="创建时间：2019-09-02 13:09:03 / 修改时间：14:55:01" itemprop="dateCreated datePublished" datetime="2019-09-02T13:09:03+09:00">2019-09-02</time>
+              <time title="创建时间：2019-09-02 13:09:03" itemprop="dateCreated datePublished" datetime="2019-09-02T13:09:03+09:00">2019-09-02</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-06-17 00:23:58" itemprop="dateModified" datetime="2020-06-17T00:23:58+09:00">2020-06-17</time>
               
             
           </span>
@@ -382,6 +394,12 @@
 <h3 id="改进后的版本"><a href="#改进后的版本" class="headerlink" title="改进后的版本"></a>改进后的版本</h3><p>将模型和操纵器分离开来，形成早期的MVC模型，称之为Model2<br><img src="/2019/09/02/SpringLearning/Model2.png" alt="Model2"><br><strong>目前个人所参与的项目全部都是采用这种架构，所以并不知晓注解的用法</strong>  </p>
 <h3 id="最新的SpringMVC架构"><a href="#最新的SpringMVC架构" class="headerlink" title="最新的SpringMVC架构"></a>最新的SpringMVC架构</h3><p>为解决持久层中一直未处理好的数据库事务的编程，又为了迎合 NoSQL 的强势崛起，Spring MVC 给出了方案<br><img src="/2019/09/02/SpringLearning/MVC.png" alt="SpringMVC">  </p>
 <p>特点：<br>1.结构松散，几乎可以在 Spring MVC 中使用各类视图<br>2.松耦合，使得各个模块分离<br>3.与Spring无缝集成  </p>
+<h2 id="Spring-Boot"><a href="#Spring-Boot" class="headerlink" title="Spring Boot"></a>Spring Boot</h2><h3 id="什么是Spring-Boot"><a href="#什么是Spring-Boot" class="headerlink" title="什么是Spring Boot"></a>什么是Spring Boot</h3><p>Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是 Spring Boot 其实不是什么新的框架，它默认配置了很多框架的使用方式，就像 Maven 整合了所有的 Jar 包，Spring Boot 整合了所有的框架。</p>
+<h3 id="Thymeleaf模板"><a href="#Thymeleaf模板" class="headerlink" title="Thymeleaf模板"></a>Thymeleaf模板</h3><p>首先在$pom.xml$中添加依赖项</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--添加thymeleaf依赖--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-thymeleaf<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>之后再在$application.properties$文件中添加配置  </p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#thymeleaf</span><br><span class="line">spring.thymeleaf.prefix = classpath:/templates/</span><br><span class="line">spring.thymeleaf.encoding = UTF-8</span><br><span class="line">spring.thymeleaf.mode=HTML</span><br><span class="line">spring.thymeleaf.cache=false</span><br><span class="line">spring.thymeleaf.suffix = .html</span><br></pre></td></tr></table></figure>
+<p>当然以上五项全部都是默认配置，可以不填  </p>
 
       
     </div>
@@ -535,7 +553,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC设计概念"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC设计概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最初的样子"><span class="nav-number">1.1.</span> <span class="nav-text">最初的样子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进后的版本"><span class="nav-number">1.2.</span> <span class="nav-text">改进后的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最新的SpringMVC架构"><span class="nav-number">1.3.</span> <span class="nav-text">最新的SpringMVC架构</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#SpringMVC设计概念"><span class="nav-number">1.</span> <span class="nav-text">SpringMVC设计概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最初的样子"><span class="nav-number">1.1.</span> <span class="nav-text">最初的样子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改进后的版本"><span class="nav-number">1.2.</span> <span class="nav-text">改进后的版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最新的SpringMVC架构"><span class="nav-number">1.3.</span> <span class="nav-text">最新的SpringMVC架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Boot"><span class="nav-number">2.</span> <span class="nav-text">Spring Boot</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是Spring-Boot"><span class="nav-number">2.1.</span> <span class="nav-text">什么是Spring Boot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thymeleaf模板"><span class="nav-number">2.2.</span> <span class="nav-text">Thymeleaf模板</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -556,7 +574,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
