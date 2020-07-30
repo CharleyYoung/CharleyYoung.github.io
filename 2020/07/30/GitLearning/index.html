@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="本文是我自己在使用$Git$之后做的一点总结">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git总结">
+<meta property="og:url" content="http://yoursite.com/2020/07/30/GitLearning/index.html">
+<meta property="og:site_name" content="Charley_Young">
+<meta property="og:description" content="本文是我自己在使用$Git$之后做的一点总结">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_installed.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_help.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_help_clone.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_init.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_init_result.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/get_url.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_clone_cmd.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_clone_result.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_add_information.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_add_cmd.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_status.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_commit_cmd.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_log.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_logs.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_revert.png">
+<meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_push_cmd.png">
+<meta property="og:updated_time" content="2020-07-30T07:45:09.136Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Git总结">
+<meta name="twitter:description" content="本文是我自己在使用$Git$之后做的一点总结">
+<meta name="twitter:image" content="http://yoursite.com/2020/07/30/GitLearning/Git_installed.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/07/30/GitLearning/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Git总结 | Charley_Young</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charley_Young</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/30/GitLearning/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charley_Young">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charley_Young">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Git总结
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-07-30 16:39:58 / 修改时间：16:45:09" itemprop="dateCreated datePublished" datetime="2020-07-30T16:39:58+09:00">2020-07-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本文是我自己在使用$Git$之后做的一点总结  </p>
+<a id="more"></a>
+<h2 id="什么是Git"><a href="#什么是Git" class="headerlink" title="什么是Git"></a>什么是Git</h2><p>$Git$ 是一个开源的分布式版本控制系统，用于敏捷高效地处理任何小或大的项目。<br>$Git$ 是$Linus Torvalds$ 为了帮助管理$Linux$ 内核开发而开发的一个开放源码的版本控制软件。<br>$Git$ 与常用的版本控制工具$CVS$,  $Subversion$ 等不同，它采用了分布式版本库的方式，不必服务器端软件支持。  </p>
+<h2 id="如何在我的电脑上安装Git"><a href="#如何在我的电脑上安装Git" class="headerlink" title="如何在我的电脑上安装Git"></a>如何在我的电脑上安装Git</h2><p>$Git$ 的安装十分方便，首先你需要到<a href="https://git-scm.com/" target="_blank" rel="noopener">$Git$</a>官方网站上去下载你对应系统的应用，通常下最新版就行了。如果你觉得下载太慢，可以尝试一下这个<a href="https://npm.taobao.org/mirrors/git-for-windows/" target="_blank" rel="noopener">镜像站</a><br>安装完成之后在电脑上任意位置右键，如果你看到了如下两个，那么恭喜你已经成功安装$Git$，<del>可以开始头秃之旅了</del>  </p>
+<p><img src="/2020/07/30/GitLearning/Git_installed.png" alt="Git安装成功">  </p>
+<h2 id="Git的一些常用命令"><a href="#Git的一些常用命令" class="headerlink" title="Git的一些常用命令"></a>Git的一些常用命令</h2><p>虽然在项目开发中，使用的$IDE$ 通常会提供对$Git$ 的支持，如$Eclipse$ , $IDEA$ 都提供对$Git$ 的$GUI$ 支持，可以使用$GUI$ 的方法管理$Git$ 项目，但是作为程序员还是不得不了解如何利用命令行使用$Git$  </p>
+<h3 id="万能的手册"><a href="#万能的手册" class="headerlink" title="万能的手册"></a>万能的手册</h3><p>对于刚接触$Git$ 的人来说，可能经常会记不住$Git$ 的一些命令或者一些参数，这个时候可以在命令行输入如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git help</span><br></pre></td></tr></table></figure>
+<p>敲完后按下回车，可以看到如下显示  </p>
+<p><img src="/2020/07/30/GitLearning/Git_help.png" alt="git help">  </p>
+<p>从图上可以看出$Git$ 将你会用到常用命令分成了五类，分别是  </p>
+<blockquote>
+<blockquote>
+<p>1.开始一个工作空间<br>2.对当前的工作空间进行操作<br>3.检查历史状态和记录<br>4.对历史记录的操作<br>5.合作  </p>
+</blockquote>
+</blockquote>
+<p>上述这些操作也是使用$Git$ 的一般过程：<strong>从创建一个工作空间，对该工作空间进行的操作，操作的过程中会对历史记录进行操作，共享该工作空间与他人合作。</strong>  </p>
+<p>我们可以看到显示的最后一行，$Git$ 有提示如果你忘了某一个具体的操作，可以在命令后面加参数。比如，我忘记了该如何$clone$ 一个现有的项目，可以在命令行输入如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git help clone</span><br></pre></td></tr></table></figure>
+<p>之后你的浏览器就会显示出详细的帮助手册(无需联网)  </p>
+<p><img src="/2020/07/30/GitLearning/Git_help_clone.png" alt="git help clone">  </p>
+<h3 id="1-开始一个工作空间"><a href="#1-开始一个工作空间" class="headerlink" title="1.开始一个工作空间"></a>1.开始一个工作空间</h3><p>常言万事开头难，然而对于$Git$ ，要开始一个项目非常的简单，我们分成如下两个情况  </p>
+<h4 id="从头开始一个新项目"><a href="#从头开始一个新项目" class="headerlink" title="从头开始一个新项目"></a>从头开始一个新项目</h4><p>我们考虑这样一种情况：我的项目刚刚起步，刚进入初始化的阶段，还没有人贡献代码，也没有远端仓库，该怎么办？  </p>
+<p>首先创建一个项目文件夹，文件夹名称随意，下一步我们就是要将这个文件夹变成一个$Git$ 项目文件夹。在命令行输入如下命令即可  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<p>敲完之后按回车可以看到如下图所示的提示  </p>
+<p><img src="/2020/07/30/GitLearning/Git_init.png" alt="git init">  </p>
+<p>进入到该文件夹，如果你看到如下提示，那么说明你的本地仓库已经完成初始化了  </p>
+<p><img src="/2020/07/30/GitLearning/Git_init_result.png" alt="init complete">  </p>
+<h4 id="从远端仓库获取"><a href="#从远端仓库获取" class="headerlink" title="从远端仓库获取"></a>从远端仓库获取</h4><p>如果我是一条懒狗<del>没错我就是懒狗</del>，远端仓库的构建已经有别人先完成了，你现在要加入这个项目成为一个贡献者，那又该如何操作呢？  </p>
+<p>这时候你首先需要知道项目的URL，拿本项目举例，你需要获得如下信息  </p>
+<p><img src="/2020/07/30/GitLearning/get_url.png" alt="get URL">  </p>
+<p>完成上述步骤你就能获得本项目的URL，接下来在你想要$clone$ 本项目的路径下呼出$Git bash$ 在命令行中敲下如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone URL地址</span><br></pre></td></tr></table></figure>
+<p>其中URL地址就是你刚刚复制出来的那一串，$clone$ 结果如下两图所示  </p>
+<p><img src="/2020/07/30/GitLearning/git_clone_cmd.png" alt="git clone cmd">  </p>
+<p><img src="/2020/07/30/GitLearning/git_clone_result.png" alt="clone result">  </p>
+<p>你可以对别的命令不熟悉，但一定要对$git clone$ 非常熟悉。<del>遇到不会的问题直接上$Github$ 找开源解决方案然后$git clone$ 白嫖别人成果真的是太爽了</del>  </p>
+<h3 id="2-对当前的工作空间进行操作"><a href="#2-对当前的工作空间进行操作" class="headerlink" title="2.对当前的工作空间进行操作"></a>2.对当前的工作空间进行操作</h3><p>现在来介绍$Git$ 对本地工作空间的操作。首先当我们进行了上一部分的操作之后，不管是用$init$ 初始化的工作空间还是$clone$ 的已经存在的空间，最后我们都是要往里面添加我们自己编写的文件的。那么自然而然的我们就要学习如何在当前的工作空间进行操作  </p>
+<h4 id="将经过变更的文件添加进暂存区"><a href="#将经过变更的文件添加进暂存区" class="headerlink" title="将经过变更的文件添加进暂存区"></a>将经过变更的文件添加进暂存区</h4><p>假设我们往工作区里添加了一个新的文件。并且往里面写入了一些内容，如下图所示  </p>
+<p><img src="/2020/07/30/GitLearning/git_add_information.png" alt="在新文件中添加信息">  </p>
+<p>可以看到我们新增了一行内容，这时我们在命令行中输入如下命令既可以将该文件添加到本地暂存区  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [filename]</span><br></pre></td></tr></table></figure>
+<p>执行的结果如下图所示  </p>
+<p><img src="/2020/07/30/GitLearning/git_add_cmd.png" alt="命令行使用add">  </p>
+<p>很多时候我们可能更改/新增了比较多的文件，如果用$add$ 命令一个一个添加进暂存区的话，那是一个比较大的工作量也没什么意义。这时可以添加参数来处理，如下所示  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">以下两个命令可以添加所有被更改或者新增的文件</span><br><span class="line">git add .</span><br><span class="line">git add --all</span><br><span class="line"></span><br><span class="line">以下命令可以指定添加哪些类型的文件</span><br><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
+<p>另外，如果我们想查看当前工作区内文件的详细情况，可以使用如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<p>该命令可以查看当前目录下的文件是否发生变化  </p>
+<p><img src="/2020/07/30/GitLearning/git_status.png" alt="git status">  </p>
+<p>从图上可以看出，$Git$ 还是很智能的，$status$ 显示出我们的$text.txt$是属于已经添加进暂存区的了。而$README.md$ 则是有更改但未添加。而下面两个图片文件则属于新增且未添加。  </p>
+<h4 id="让Git知道你是谁"><a href="#让Git知道你是谁" class="headerlink" title="让Git知道你是谁"></a>让Git知道你是谁</h4><p>在我们将暂存区的文件添加到我们本地仓库之前，我们需要进行一个操作，就是配置$Git$ 的用户信息。就像你要坐高铁出行需要提供高铁票一样。可以使用如下两个命令进行配置 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<p>完成登记之后，可以使用如下两个命令进行查看  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+<h4 id="将暂存区的文件提交到本地仓库"><a href="#将暂存区的文件提交到本地仓库" class="headerlink" title="将暂存区的文件提交到本地仓库"></a>将暂存区的文件提交到本地仓库</h4><p>当我们已经完成了编写，确定要将暂存区内的内容提交到本地仓库了。这个时候可以用如下的命令来进行提交  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;对于本次提交的说明&quot;</span><br></pre></td></tr></table></figure>
+<p><strong>注意，请认真对待提交说明，不要用诸如“修改了一点东西” “bug fixed”等简短的信息来敷衍，当项目有很多人的时候，让别人知道你到底做了什么工作是十分重要的</strong>  </p>
+<p>此时我们将之前进行修改过的$txt$ 提交到本地仓库，结果如下  </p>
+<p><img src="/2020/07/30/GitLearning/git_commit_cmd.png" alt="git commit">  </p>
+<p>如果我们$add$ 和$commit$ 的次数多了，想要看看以前提交都提交了些什么的时候，可以使用如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<p>该命令会显示每一次的提交信息  </p>
+<p><img src="/2020/07/30/GitLearning/git_log.png" alt="git log">  </p>
+<p>可以看到里面有完整的校验码编号以及提交信息等，这个页面有时候会出现中文乱码，可以通过在$Git$ 中配置如下命令解决  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
+<p>同时我们注意到该命令展示的提交信息虽然很全面，但是显得有些臃肿。有时我们希望只关注一些重点信息，这个时候就可以通过配置别名<code>alias</code>来解决  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.logs &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</span><br></pre></td></tr></table></figure>
+<p>上面这个是我同学推荐给我的，还蛮好用的，如果需要其他的自定义显示，可以自己去学习如何配置<code>alias</code>使用之后的结果如图显示  </p>
+<p><img src="/2020/07/30/GitLearning/git_logs.png" alt="git logs">  </p>
+<h3 id="3-本地版本的回退"><a href="#3-本地版本的回退" class="headerlink" title="3.本地版本的回退"></a>3.本地版本的回退</h3><p>在使用$Git$ 的过程中，并不是每一次的$add$ 和$commit$ 都是符合你最终预期的，经常会有重新修改的时候。这个时候$Git$ 提供了回退的机制，让你有机会修改你的提交  </p>
+<h4 id="对暂存区的回退"><a href="#对暂存区的回退" class="headerlink" title="对暂存区的回退"></a>对暂存区的回退</h4><p>如果你在编写完准备提交的时候突然想到，某个或者某几个文件你并不想在这次提交的时候提交上去，但你已经将这些文件添加进暂存区了。这个时候可以使用以下命令来将你不想提交的文件移除出暂存区  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [filename]</span><br></pre></td></tr></table></figure>
+<p><strong>此处务必加上<code>--cached</code>参数，该参数保证删除操作只删除暂存区文件，否则<code>git rm</code>会把本地文件一起删除</strong>  </p>
+<h4 id="对提交说明的更改"><a href="#对提交说明的更改" class="headerlink" title="对提交说明的更改"></a>对提交说明的更改</h4><p>如果你已经运行了<code>git commit -m [message]</code>，然后突然发现自己提交的说明有问题，想再进行更改，这时候可以运行如下命令进入$vi$ 页面来修改  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<h4 id="已提交内容的回退"><a href="#已提交内容的回退" class="headerlink" title="已提交内容的回退"></a>已提交内容的回退</h4><p>如果你编写的内容在提交之后出现了比较大的问题，比如修复了一个$bug$ 产生了一个新的$bug$，或者你提交之后发现还不如几个版本之前的稳定。那么你有两种方法回退到以前的版本。  </p>
+<p>首先我们输入<code>git log</code>来查看提交信息，也可以使用我之前提到的<code>alias</code>，  </p>
+<p><img src="/2020/07/30/GitLearning/git_revert.png" alt>  </p>
+<p>绿色框框里的就是我们需要的<strong>提交标识号</strong>，如果需要回退版本，这个是必须要知道的  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset [提交标识号]</span><br></pre></td></tr></table></figure>
+<p><code>git reset</code>可以让你回退到你指定标识号的位置，缺点是<strong>该提交标识号往后的所有提交信息都无法查看</strong>，这样当你回退很多个版本的时候，当前版本和回退目标版本之间的中间提交版本将会<strong>丢失</strong>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert [提交标识号]</span><br></pre></td></tr></table></figure>
+<p><code>git revert</code>也可以让你回退到指定标识号的位置，但他的做法是产生一次新的提交，该提交的内容与你要回退的那个版本的提交是完全一致的，所以回退完成之后中间提交版本的信息将会保留。具体有什么差别请各位自行尝试  </p>
+<h3 id="与远程的交互"><a href="#与远程的交互" class="headerlink" title="与远程的交互"></a>与远程的交互</h3><p>我们使用$Git$ 肯定不单单是为了管理个人项目，那么我们难免需要将自己编写的文件推送到一个公共的仓库中供大家使用。那么将本地仓库提交到远端仓库分为两种情况。  </p>
+<p>首先我们考虑这个远端仓库他不存在，我本地仓库是第一副本，我是项目创始人，我现在需要将我创建的本地仓库推送到远端仓库变成一个大家都能使用的仓库，可以使用如下命令  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [远端主机名] [远端主机地址]</span><br></pre></td></tr></table></figure>
+<p>通常远端主机名使用$origin$，远端主机地址就是你远端仓库的$URL$链接，这样你就将你的远端仓库添加到$Git$中了,当你需要提交的时候，就可以使用如下命令</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下述命令适用于第一次提交</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line">下述命令适用于后续提交</span><br><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
+<p>其中第二条命令的完整版应该是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
+<p>通常情况下$master$ 分支在第一次提交创建后会被设置为保护分支，避免有些错误提交直接对$master$ 造成不可逆损害或者有些不怀好意的人直接对$master$ 覆盖一个空分支导致项目直接报废。这种情况下项目管理者通常会要求各成员自己维护自己的独立分支，将本地编写提交到自己的分支上，在测试完成确定无误之后在远端仓库提交合并申请。由管理者审核无误之后将该分支的内容合并到$master$ 分支中确保安全  </p>
+<p>第二种情况是我的项目是通过<code>git clone</code>建立的。这种情况下你修改完了之后确认与远端无冲突之后直接使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
+<p>就行了，这里同样推荐使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
+<p>命令，理由同上。<br>最后$push$成功的结果如图所示  </p>
+<p><img src="/2020/07/30/GitLearning/git_push_cmd.png" alt="git push">  </p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/24/smallerNumbersThanCurrent/" rel="next" title="有多少小于当前数字的数字">
+                <i class="fa fa-chevron-left"></i> 有多少小于当前数字的数字
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charley_Young</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是Git"><span class="nav-number">1.</span> <span class="nav-text">什么是Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何在我的电脑上安装Git"><span class="nav-number">2.</span> <span class="nav-text">如何在我的电脑上安装Git</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Git的一些常用命令"><span class="nav-number">3.</span> <span class="nav-text">Git的一些常用命令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#万能的手册"><span class="nav-number">3.1.</span> <span class="nav-text">万能的手册</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-开始一个工作空间"><span class="nav-number">3.2.</span> <span class="nav-text">1.开始一个工作空间</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#从头开始一个新项目"><span class="nav-number">3.2.1.</span> <span class="nav-text">从头开始一个新项目</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#从远端仓库获取"><span class="nav-number">3.2.2.</span> <span class="nav-text">从远端仓库获取</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-对当前的工作空间进行操作"><span class="nav-number">3.3.</span> <span class="nav-text">2.对当前的工作空间进行操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将经过变更的文件添加进暂存区"><span class="nav-number">3.3.1.</span> <span class="nav-text">将经过变更的文件添加进暂存区</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#让Git知道你是谁"><span class="nav-number">3.3.2.</span> <span class="nav-text">让Git知道你是谁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#将暂存区的文件提交到本地仓库"><span class="nav-number">3.3.3.</span> <span class="nav-text">将暂存区的文件提交到本地仓库</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-本地版本的回退"><span class="nav-number">3.4.</span> <span class="nav-text">3.本地版本的回退</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#对暂存区的回退"><span class="nav-number">3.4.1.</span> <span class="nav-text">对暂存区的回退</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#对提交说明的更改"><span class="nav-number">3.4.2.</span> <span class="nav-text">对提交说明的更改</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#已提交内容的回退"><span class="nav-number">3.4.3.</span> <span class="nav-text">已提交内容的回退</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#与远程的交互"><span class="nav-number">3.5.</span> <span class="nav-text">与远程的交互</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charley_Young</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fbacd809b0f5f2803304',
+    clientSecret: '68c17eb0caebd4af73d39cec8a87daa15e79c9ae',
+    repo: 'charleyyoung.github.io',
+    owner: 'CharleyYoung',
+    admin: ['CharleyYoung'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
