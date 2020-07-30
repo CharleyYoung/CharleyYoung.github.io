@@ -119,7 +119,7 @@
 <meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_logs.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_revert.png">
 <meta property="og:image" content="http://yoursite.com/2020/07/30/GitLearning/git_push_cmd.png">
-<meta property="og:updated_time" content="2020-07-30T07:45:09.136Z">
+<meta property="og:updated_time" content="2020-07-30T07:55:29.110Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git总结">
 <meta name="twitter:description" content="本文是我自己在使用$Git$之后做的一点总结">
@@ -349,7 +349,7 @@
                 
               
 
-              <time title="创建时间：2020-07-30 16:39:58 / 修改时间：16:45:09" itemprop="dateCreated datePublished" datetime="2020-07-30T16:39:58+09:00">2020-07-30</time>
+              <time title="创建时间：2020-07-30 16:39:58 / 修改时间：16:55:29" itemprop="dateCreated datePublished" datetime="2020-07-30T16:39:58+09:00">2020-07-30</time>
             
 
             
@@ -395,7 +395,7 @@
 <p><img src="/2020/07/30/GitLearning/Git_installed.png" alt="Git安装成功">  </p>
 <h2 id="Git的一些常用命令"><a href="#Git的一些常用命令" class="headerlink" title="Git的一些常用命令"></a>Git的一些常用命令</h2><p>虽然在项目开发中，使用的$IDE$ 通常会提供对$Git$ 的支持，如$Eclipse$ , $IDEA$ 都提供对$Git$ 的$GUI$ 支持，可以使用$GUI$ 的方法管理$Git$ 项目，但是作为程序员还是不得不了解如何利用命令行使用$Git$  </p>
 <h3 id="万能的手册"><a href="#万能的手册" class="headerlink" title="万能的手册"></a>万能的手册</h3><p>对于刚接触$Git$ 的人来说，可能经常会记不住$Git$ 的一些命令或者一些参数，这个时候可以在命令行输入如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git help</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">help</span></span><br></pre></td></tr></table></figure>
 <p>敲完后按下回车，可以看到如下显示  </p>
 <p><img src="/2020/07/30/GitLearning/Git_help.png" alt="git help">  </p>
 <p>从图上可以看出$Git$ 将你会用到常用命令分成了五类，分别是  </p>
@@ -406,13 +406,13 @@
 </blockquote>
 <p>上述这些操作也是使用$Git$ 的一般过程：<strong>从创建一个工作空间，对该工作空间进行的操作，操作的过程中会对历史记录进行操作，共享该工作空间与他人合作。</strong>  </p>
 <p>我们可以看到显示的最后一行，$Git$ 有提示如果你忘了某一个具体的操作，可以在命令后面加参数。比如，我忘记了该如何$clone$ 一个现有的项目，可以在命令行输入如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git help clone</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">help</span> <span class="built_in">clone</span></span><br></pre></td></tr></table></figure>
 <p>之后你的浏览器就会显示出详细的帮助手册(无需联网)  </p>
 <p><img src="/2020/07/30/GitLearning/Git_help_clone.png" alt="git help clone">  </p>
 <h3 id="1-开始一个工作空间"><a href="#1-开始一个工作空间" class="headerlink" title="1.开始一个工作空间"></a>1.开始一个工作空间</h3><p>常言万事开头难，然而对于$Git$ ，要开始一个项目非常的简单，我们分成如下两个情况  </p>
 <h4 id="从头开始一个新项目"><a href="#从头开始一个新项目" class="headerlink" title="从头开始一个新项目"></a>从头开始一个新项目</h4><p>我们考虑这样一种情况：我的项目刚刚起步，刚进入初始化的阶段，还没有人贡献代码，也没有远端仓库，该怎么办？  </p>
 <p>首先创建一个项目文件夹，文件夹名称随意，下一步我们就是要将这个文件夹变成一个$Git$ 项目文件夹。在命令行输入如下命令即可  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br></pre></td></tr></table></figure>
 <p>敲完之后按回车可以看到如下图所示的提示  </p>
 <p><img src="/2020/07/30/GitLearning/Git_init.png" alt="git init">  </p>
 <p>进入到该文件夹，如果你看到如下提示，那么说明你的本地仓库已经完成初始化了  </p>
@@ -421,7 +421,7 @@
 <p>这时候你首先需要知道项目的URL，拿本项目举例，你需要获得如下信息  </p>
 <p><img src="/2020/07/30/GitLearning/get_url.png" alt="get URL">  </p>
 <p>完成上述步骤你就能获得本项目的URL，接下来在你想要$clone$ 本项目的路径下呼出$Git bash$ 在命令行中敲下如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone URL地址</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> URL地址</span><br></pre></td></tr></table></figure>
 <p>其中URL地址就是你刚刚复制出来的那一串，$clone$ 结果如下两图所示  </p>
 <p><img src="/2020/07/30/GitLearning/git_clone_cmd.png" alt="git clone cmd">  </p>
 <p><img src="/2020/07/30/GitLearning/git_clone_result.png" alt="clone result">  </p>
@@ -430,61 +430,61 @@
 <h4 id="将经过变更的文件添加进暂存区"><a href="#将经过变更的文件添加进暂存区" class="headerlink" title="将经过变更的文件添加进暂存区"></a>将经过变更的文件添加进暂存区</h4><p>假设我们往工作区里添加了一个新的文件。并且往里面写入了一些内容，如下图所示  </p>
 <p><img src="/2020/07/30/GitLearning/git_add_information.png" alt="在新文件中添加信息">  </p>
 <p>可以看到我们新增了一行内容，这时我们在命令行中输入如下命令既可以将该文件添加到本地暂存区  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [filename]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add [filename]</span><br></pre></td></tr></table></figure>
 <p>执行的结果如下图所示  </p>
 <p><img src="/2020/07/30/GitLearning/git_add_cmd.png" alt="命令行使用add">  </p>
 <p>很多时候我们可能更改/新增了比较多的文件，如果用$add$ 命令一个一个添加进暂存区的话，那是一个比较大的工作量也没什么意义。这时可以添加参数来处理，如下所示  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">以下两个命令可以添加所有被更改或者新增的文件</span><br><span class="line">git add .</span><br><span class="line">git add --all</span><br><span class="line"></span><br><span class="line">以下命令可以指定添加哪些类型的文件</span><br><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">以下两个命令可以添加所有被更改或者新增的文件</span><br><span class="line">git add .</span><br><span class="line">git add --all</span><br><span class="line"></span><br><span class="line">以下命令可以指定添加哪些类型的文件</span><br><span class="line">git add *.txt</span><br></pre></td></tr></table></figure>
 <p>另外，如果我们想查看当前工作区内文件的详细情况，可以使用如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git status</span><br></pre></td></tr></table></figure>
 <p>该命令可以查看当前目录下的文件是否发生变化  </p>
 <p><img src="/2020/07/30/GitLearning/git_status.png" alt="git status">  </p>
 <p>从图上可以看出，$Git$ 还是很智能的，$status$ 显示出我们的$text.txt$是属于已经添加进暂存区的了。而$README.md$ 则是有更改但未添加。而下面两个图片文件则属于新增且未添加。  </p>
 <h4 id="让Git知道你是谁"><a href="#让Git知道你是谁" class="headerlink" title="让Git知道你是谁"></a>让Git知道你是谁</h4><p>在我们将暂存区的文件添加到我们本地仓库之前，我们需要进行一个操作，就是配置$Git$ 的用户信息。就像你要坐高铁出行需要提供高铁票一样。可以使用如下两个命令进行配置 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name &quot;你的用户名&quot;</span><br><span class="line">git config --global user.email &quot;你的邮箱地址&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"你的用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"你的邮箱地址"</span></span><br></pre></td></tr></table></figure>
 <p>完成登记之后，可以使用如下两个命令进行查看  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config user.name</span><br><span class="line">git config user.email</span><br></pre></td></tr></table></figure>
 <h4 id="将暂存区的文件提交到本地仓库"><a href="#将暂存区的文件提交到本地仓库" class="headerlink" title="将暂存区的文件提交到本地仓库"></a>将暂存区的文件提交到本地仓库</h4><p>当我们已经完成了编写，确定要将暂存区内的内容提交到本地仓库了。这个时候可以用如下的命令来进行提交  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m &quot;对于本次提交的说明&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit -m <span class="string">"对于本次提交的说明"</span></span><br></pre></td></tr></table></figure>
 <p><strong>注意，请认真对待提交说明，不要用诸如“修改了一点东西” “bug fixed”等简短的信息来敷衍，当项目有很多人的时候，让别人知道你到底做了什么工作是十分重要的</strong>  </p>
 <p>此时我们将之前进行修改过的$txt$ 提交到本地仓库，结果如下  </p>
 <p><img src="/2020/07/30/GitLearning/git_commit_cmd.png" alt="git commit">  </p>
 <p>如果我们$add$ 和$commit$ 的次数多了，想要看看以前提交都提交了些什么的时候，可以使用如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git log</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
 <p>该命令会显示每一次的提交信息  </p>
 <p><img src="/2020/07/30/GitLearning/git_log.png" alt="git log">  </p>
 <p>可以看到里面有完整的校验码编号以及提交信息等，这个页面有时候会出现中文乱码，可以通过在$Git$ 中配置如下命令解决  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath false</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <p>同时我们注意到该命令展示的提交信息虽然很全面，但是显得有些臃肿。有时我们希望只关注一些重点信息，这个时候就可以通过配置别名<code>alias</code>来解决  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.logs &quot;log --color --graph --pretty=format:&apos;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&apos; --abbrev-commit&quot;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.logs <span class="string">"log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit"</span></span><br></pre></td></tr></table></figure>
 <p>上面这个是我同学推荐给我的，还蛮好用的，如果需要其他的自定义显示，可以自己去学习如何配置<code>alias</code>使用之后的结果如图显示  </p>
 <p><img src="/2020/07/30/GitLearning/git_logs.png" alt="git logs">  </p>
 <h3 id="3-本地版本的回退"><a href="#3-本地版本的回退" class="headerlink" title="3.本地版本的回退"></a>3.本地版本的回退</h3><p>在使用$Git$ 的过程中，并不是每一次的$add$ 和$commit$ 都是符合你最终预期的，经常会有重新修改的时候。这个时候$Git$ 提供了回退的机制，让你有机会修改你的提交  </p>
 <h4 id="对暂存区的回退"><a href="#对暂存区的回退" class="headerlink" title="对暂存区的回退"></a>对暂存区的回退</h4><p>如果你在编写完准备提交的时候突然想到，某个或者某几个文件你并不想在这次提交的时候提交上去，但你已经将这些文件添加进暂存区了。这个时候可以使用以下命令来将你不想提交的文件移除出暂存区  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [filename]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached [filename]</span><br></pre></td></tr></table></figure>
 <p><strong>此处务必加上<code>--cached</code>参数，该参数保证删除操作只删除暂存区文件，否则<code>git rm</code>会把本地文件一起删除</strong>  </p>
 <h4 id="对提交说明的更改"><a href="#对提交说明的更改" class="headerlink" title="对提交说明的更改"></a>对提交说明的更改</h4><p>如果你已经运行了<code>git commit -m [message]</code>，然后突然发现自己提交的说明有问题，想再进行更改，这时候可以运行如下命令进入$vi$ 页面来修改  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git commit --amend</span><br></pre></td></tr></table></figure>
 <h4 id="已提交内容的回退"><a href="#已提交内容的回退" class="headerlink" title="已提交内容的回退"></a>已提交内容的回退</h4><p>如果你编写的内容在提交之后出现了比较大的问题，比如修复了一个$bug$ 产生了一个新的$bug$，或者你提交之后发现还不如几个版本之前的稳定。那么你有两种方法回退到以前的版本。  </p>
 <p>首先我们输入<code>git log</code>来查看提交信息，也可以使用我之前提到的<code>alias</code>，  </p>
 <p><img src="/2020/07/30/GitLearning/git_revert.png" alt>  </p>
 <p>绿色框框里的就是我们需要的<strong>提交标识号</strong>，如果需要回退版本，这个是必须要知道的  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset [提交标识号]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset [提交标识号]</span><br></pre></td></tr></table></figure>
 <p><code>git reset</code>可以让你回退到你指定标识号的位置，缺点是<strong>该提交标识号往后的所有提交信息都无法查看</strong>，这样当你回退很多个版本的时候，当前版本和回退目标版本之间的中间提交版本将会<strong>丢失</strong>  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert [提交标识号]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git revert [提交标识号]</span><br></pre></td></tr></table></figure>
 <p><code>git revert</code>也可以让你回退到指定标识号的位置，但他的做法是产生一次新的提交，该提交的内容与你要回退的那个版本的提交是完全一致的，所以回退完成之后中间提交版本的信息将会保留。具体有什么差别请各位自行尝试  </p>
 <h3 id="与远程的交互"><a href="#与远程的交互" class="headerlink" title="与远程的交互"></a>与远程的交互</h3><p>我们使用$Git$ 肯定不单单是为了管理个人项目，那么我们难免需要将自己编写的文件推送到一个公共的仓库中供大家使用。那么将本地仓库提交到远端仓库分为两种情况。  </p>
 <p>首先我们考虑这个远端仓库他不存在，我本地仓库是第一副本，我是项目创始人，我现在需要将我创建的本地仓库推送到远端仓库变成一个大家都能使用的仓库，可以使用如下命令  </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [远端主机名] [远端主机地址]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [远端主机名] [远端主机地址]</span><br></pre></td></tr></table></figure>
 <p>通常远端主机名使用$origin$，远端主机地址就是你远端仓库的$URL$链接，这样你就将你的远端仓库添加到$Git$中了,当你需要提交的时候，就可以使用如下命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下述命令适用于第一次提交</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line">下述命令适用于后续提交</span><br><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">下述命令适用于第一次提交</span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line">下述命令适用于后续提交</span><br><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
 <p>其中第二条命令的完整版应该是这样的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
 <p>通常情况下$master$ 分支在第一次提交创建后会被设置为保护分支，避免有些错误提交直接对$master$ 造成不可逆损害或者有些不怀好意的人直接对$master$ 覆盖一个空分支导致项目直接报废。这种情况下项目管理者通常会要求各成员自己维护自己的独立分支，将本地编写提交到自己的分支上，在测试完成确定无误之后在远端仓库提交合并申请。由管理者审核无误之后将该分支的内容合并到$master$ 分支中确保安全  </p>
 <p>第二种情况是我的项目是通过<code>git clone</code>建立的。这种情况下你修改完了之后确认与远端无冲突之后直接使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]</span><br></pre></td></tr></table></figure>
 <p>就行了，这里同样推荐使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git push [远程主机名] [本地分支名]:[远程分支名]</span><br></pre></td></tr></table></figure>
 <p>命令，理由同上。<br>最后$push$成功的结果如图所示  </p>
 <p><img src="/2020/07/30/GitLearning/git_push_cmd.png" alt="git push">  </p>
 
