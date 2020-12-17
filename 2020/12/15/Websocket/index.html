@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.1.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.1.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.1.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="在工作中遇到了一个即时通信项目，虽然我在工作中负责的是Windows客户端设计，但是还是对后端实现做了一些了解，学习到了WebSocket技术，这里做一个简单的整理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WebSocket实现即时通信">
+<meta property="og:url" content="http://yoursite.com/2020/12/15/Websocket/index.html">
+<meta property="og:site_name" content="Charley_Young">
+<meta property="og:description" content="在工作中遇到了一个即时通信项目，虽然我在工作中负责的是Windows客户端设计，但是还是对后端实现做了一些了解，学习到了WebSocket技术，这里做一个简单的整理">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/2020/12/15/Websocket/springboot-websocket-1002.png">
+<meta property="og:updated_time" content="2020-12-15T08:51:38.626Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="WebSocket实现即时通信">
+<meta name="twitter:description" content="在工作中遇到了一个即时通信项目，虽然我在工作中负责的是Windows客户端设计，但是还是对后端实现做了一些了解，学习到了WebSocket技术，这里做一个简单的整理">
+<meta name="twitter:image" content="http://yoursite.com/2020/12/15/Websocket/springboot-websocket-1002.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2020/12/15/Websocket/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>WebSocket实现即时通信 | Charley_Young</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Charley_Young</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/12/15/Websocket/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Charley_Young">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Charley_Young">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">WebSocket实现即时通信
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-12-15 11:58:52 / 修改时间：17:51:38" itemprop="dateCreated datePublished" datetime="2020-12-15T11:58:52+09:00">2020-12-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>在工作中遇到了一个即时通信项目，虽然我在工作中负责的是Windows客户端设计，但是还是对后端实现做了一些了解，学习到了WebSocket技术，这里做一个简单的整理</p>
+<a id="more"></a>
+<h2 id="WebSocket介绍"><a href="#WebSocket介绍" class="headerlink" title="WebSocket介绍"></a>WebSocket介绍</h2><h3 id="WebSocket概念"><a href="#WebSocket概念" class="headerlink" title="WebSocket概念"></a>WebSocket概念</h3><p><img src="/2020/12/15/Websocket/springboot-websocket-1002.png" alt="WebSocket"></p>
+<p>WebSocket 是一种基于 TCP 的网络协议。在 2009 年诞生，于 2011 年被 IETF 定为标准 RFC 6455 通信标准，并由 RFC7936 补充规范。WebSocket API 也被 W3C 定为标准。</p>
+<p>WebSocket 也是一种全双工通信的协议，既允许客户端向服务器主动发送消息，也允许服务器主动向客户端发送消息。在 WebSocket 中，浏览器和服务器只需要完成一次握手，两者之间就可以建立持久性的连接，进行双向数据传输。  </p>
+<h3 id="WebSocket特点"><a href="#WebSocket特点" class="headerlink" title="WebSocket特点"></a>WebSocket特点</h3><p>1.连接握手阶段使用 HTTP 协议<br>2.协议标识符是 ws，如果采用加密则是 wss<br>3.数据格式比较轻量，性能开销小，通信高效<br>4.没有同源限制，客户端可以与任意服务器通信<br>5.建立在 TCP 协议之上，服务器端的实现比较容易<br>6.通过 WebSocket 可以发送文本，也可以发送二进制数据<br>7.与 HTTP 协议有着良好的兼容性。默认端口也是 80 和 443，并且握手阶段采用 HTTP 协议，因此握手时不容易屏蔽，能通过各种 HTTP 代理服务器  </p>
+<h3 id="为什么需要WebSocket"><a href="#为什么需要WebSocket" class="headerlink" title="为什么需要WebSocket"></a>为什么需要WebSocket</h3><p>谈起为什么需要 WebSocket 前，那得先了解在没有 WebSocket 那段时间说起，那时候基于 Web 的消息基本上是靠 Http 协议进行通信，而经常有”聊天室”、”消息推送”、”股票信 息实时动态”等这样需求，而实现这样的需求常用的有以下几种解决方案  </p>
+<h4 id="短轮询-Traditional-Polling"><a href="#短轮询-Traditional-Polling" class="headerlink" title="短轮询(Traditional Polling)"></a>短轮询(Traditional Polling)</h4><p>短轮询是指客户端每隔一段时间就询问一次服务器是否有新的消息，如果有就接收消息。这样方式会增加很多次无意义的发送请求信息，每次都会耗费流量及处理器资源  </p>
+<ul>
+<li>优点：短连接，服务器处理简单，支持跨域、浏览器兼容性较好  </li>
+<li>缺点：有一定延迟、<strong>服务器压力较大，浪费带宽流量、大部分是无效请求</strong>  </li>
+</ul>
+<h4 id="长轮询-Long-Polling"><a href="#长轮询-Long-Polling" class="headerlink" title="长轮询(Long Polling)"></a>长轮询(Long Polling)</h4><p>长轮询是短轮询的改进，客户端执行 HTTP 请求发送消息到服务器后，等待服务器回应，如果没有新的消息就一直等待，知道服务器有新消息传回或者超时。这也是个反复的过程，这种做法只是减小了网络带宽和处理器的消耗，但是带来的问题是导致消息实时性低，延迟严重。而且也是基于循环，最根本的带宽及处理器资源占用并没有得到有效的解决  </p>
+<ul>
+<li>优点：减少轮询次数，低延迟，浏览器兼容性较好  </li>
+<li>缺点：服务器需要保持大量连接  </li>
+</ul>
+<h4 id="服务器发送事件-Server-Sent-Event"><a href="#服务器发送事件-Server-Sent-Event" class="headerlink" title="服务器发送事件(Server-Sent Event)"></a>服务器发送事件(Server-Sent Event)</h4><p>服务器发送事件是一种服务器向浏览器客户端发起数据传输的技术。一旦创建了初始连接，事件流将保持打开状态，直到客户端关闭。该技术通过传统的 HTTP 发送，并具有 WebSockets 缺乏的各种功能，例如”自动重新连接”、”事件ID” 及 “发送任意事件”的能力。</p>
+<p>服务器发送事件是单向通道，<strong>只能服务器向浏览器发送，因为流信息本质上就是下载</strong>  </p>
+<p>优点：适用于更新频繁、低延迟并且数据都是从服务端发到客户端<br>缺点：浏览器兼容难度高  </p>
+<hr>
+<p>显然，上面这几种方式都有各自的优缺点，虽然靠轮询方式能够实现这些一些功能，但是其对性能的开销和低效率是非常致命的，尤其是在移动端流行的现在。现在客户端与服务端双向通信的需求越来越多，且现在的浏览器大部分都支持 WebSocket。所以对实时性和双向通信及其效率有要求的话，比较推荐使用 WebSocket  </p>
+<h3 id="WebSocket连接流程"><a href="#WebSocket连接流程" class="headerlink" title="WebSocket连接流程"></a>WebSocket连接流程</h3><p>1.客户端先用带有Upgrade:Websocket请求头的HTTP请求，向服务器发起连接请求，实现握手(HandShake)  </p>
+<p>客户端HTTP请求的Header示例如下  </p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Connection</span>: Upgrade</span><br><span class="line"><span class="attribute">Sec-WebSocket-Extensions</span>: permessage-deflate; client_max_window_bits</span><br><span class="line"><span class="attribute">Sec-WebSocket-Key</span>: IRQYhWINfX5Fh1zdocDl6Q==</span><br><span class="line"><span class="attribute">Sec-WebSocket-Version</span>: 13</span><br><span class="line"><span class="attribute">Upgrade</span>: websocket</span><br><span class="line">```  </span><br><span class="line"></span><br><span class="line">* **Connection**： Upgrade 表示要升级协议  </span><br><span class="line">* **Upgrade**： Websocket 要升级协议到 websocket 协议  </span><br><span class="line">* **Sec-WebSocket-Extensions**： 表示客户端所希望执行的扩展(如消息压缩插件)  </span><br><span class="line">* **Sec-WebSocket-Key**： 主要用于WebSocket协议的校验，对应服务端响应头的 Sec-WebSocket-Accept  </span><br><span class="line">* **Sec-WebSocket-Version**： 表示 websocket 的版本。如果服务端不支持该版本，需要返回一个Sec-WebSocket-Versionheader，里面包含服务端支持的版本号  </span><br><span class="line"></span><br><span class="line">2.握手成功后，由HTTP协议升级成Websocket协议，进行长连接通信，两端互相传递信息  </span><br><span class="line"></span><br><span class="line">服务端响应的HTTP Header示例如下  </span><br><span class="line"></span><br><span class="line">```http</span><br><span class="line"><span class="attribute">Connection</span>: upgrade</span><br><span class="line"><span class="attribute">Sec-Websocket-Accept</span>: TSF8/KitM+yYRbXmjclgl7DwbHk=</span><br><span class="line"><span class="attribute">Upgrade</span>: websocket</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>Connection</strong>： Upgrade 表示要升级协议  </li>
+<li><strong>Upgrade</strong>： Websocket 要升级协议到 websocket 协议  </li>
+<li><strong>Sec-Websocket-Accept</strong>： 对应 Sec-WebSocket-Key 生成的值，主要是返回给客户端，让客户端对此值进行校验，证明服务端支持 WebSocket  </li>
+</ul>
+<h3 id="WebSocket中子协议支持"><a href="#WebSocket中子协议支持" class="headerlink" title="WebSocket中子协议支持"></a>WebSocket中子协议支持</h3><p>WebSocket 确实指定了一种消息传递体系结构，但并不强制使用任何特定的消息传递协议。而且它是 TCP 上的一个非常薄的层，它将字节流转换为消息流（文本或二进制）仅此而已。由应用程序来解释消息的含义  </p>
+<p>与 HTTP（它是应用程序级协议）不同，在 WebSocket 协议中，<strong>传入消息中根本没有足够的信息供框架或容器知道如何路由或处理它</strong>。因此，对于非常琐碎的应用程序而言 WebSocket 协议的级别可以说太低了。<strong>可以做到的是引导在其上面再创建一层框架。这就相当于当今大多数 Web 应用程序使用的是 Web 框架，而不直接仅使用 Servlet API 进行编码一样</strong>  </p>
+<p>WebSocket RFC 定义了子协议的使用。在握手过程中，客户机和服务器可以使用头 Sec-WebSocket 协议商定子协议，即使不需要使用子协议，而是用更高的应用程序级协议，但应用程序仍需要选择客户端和服务器都可以理解的消息格式。且该格式可以是自定义的、特定于框架的或标准的消息传递协议  </p>
+<p>Spring 框架支持使用 STOMP，这是一个简单的消息传递协议，最初创建用于脚本语言，框架灵感来自 HTTP。STOMP 被广泛支持，非常适合在 WebSocket 和 web 上使用  </p>
+<h3 id="STOMP协议-其实可以不嵌入"><a href="#STOMP协议-其实可以不嵌入" class="headerlink" title="STOMP协议(其实可以不嵌入)"></a>STOMP协议(其实可以不嵌入)</h3><p>STOMP(Simple Text-Orientated Messaging Protocol)是一种简单的面向文本的消息传递协议。它提供了一个可互操作的连接格式，允许 STOMP 客户端与任意 STOMP 消息代理（Broker）进行交互。STOMP 协议由于设计简单，易于开发客户端，因此在多种语言和多种平台上得到广泛地应用  </p>
+<p>详细的协议规范可以查看<a href="https://stomp.github.io/stomp-specification-1.2.html" target="_blank" rel="noopener">STOMP协议规范</a>。简单介绍可以分为以下几点  </p>
+<ul>
+<li>STOMP 是基于帧的协议，其帧以 HTTP 为模型  </li>
+<li>STOMP 框架由命令，一组可选的标头和可选的主体组成  </li>
+<li>STOMP 基于文本，但也允许传输二进制消息  </li>
+<li>STOMP 的默认编码为 UTF-8，但它支持消息正文的替代编码的规范  </li>
+</ul>
+<h4 id="STOMP与WebSocket的关系"><a href="#STOMP与WebSocket的关系" class="headerlink" title="STOMP与WebSocket的关系"></a>STOMP与WebSocket的关系</h4><p>直接使用 WebSocket 就很类似于使用 TCP 套接字来编写 Web 应用，因为没有高层级的应用协议（wire protocol），因而就需要我们定义应用之间所发送消息的语义，还需要确保连接的两端都能遵循这些语义。同 HTTP 在 TCP 套接字上添加请求-响应模型层一样，STOMP 在 WebSocket 之上提供了一个基于帧的线路格式层，用来定义消息语义  </p>
+<h4 id="使用STOMP作为WebSocket子协议的好处"><a href="#使用STOMP作为WebSocket子协议的好处" class="headerlink" title="使用STOMP作为WebSocket子协议的好处"></a>使用STOMP作为WebSocket子协议的好处</h4><ul>
+<li>无需发明自定义消息格式  </li>
+<li>在浏览器中 使用现有的stomp.js客户端  </li>
+<li>能够根据目的地将消息路由到  </li>
+<li>可以使用成熟的消息代理（例如RabbitMQ，ActiveMQ等）进行广播的选项  </li>
+<li>使用STOMP（相对于普通 WebSocket）使 Spring Framework 能够为应用程序级使用提供编程模型，就像 Spring MVC 提供基于 HTTP 的编程模型一样  </li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/03/MybatisLearning/" rel="next" title="Mybatis学习记录">
+                <i class="fa fa-chevron-left"></i> Mybatis学习记录
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Charley_Young</p>
+              <div class="site-description motion-element" itemprop="description"></div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">29</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#WebSocket介绍"><span class="nav-number">1.</span> <span class="nav-text">WebSocket介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket概念"><span class="nav-number">1.1.</span> <span class="nav-text">WebSocket概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket特点"><span class="nav-number">1.2.</span> <span class="nav-text">WebSocket特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么需要WebSocket"><span class="nav-number">1.3.</span> <span class="nav-text">为什么需要WebSocket</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#短轮询-Traditional-Polling"><span class="nav-number">1.3.1.</span> <span class="nav-text">短轮询(Traditional Polling)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#长轮询-Long-Polling"><span class="nav-number">1.3.2.</span> <span class="nav-text">长轮询(Long Polling)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#服务器发送事件-Server-Sent-Event"><span class="nav-number">1.3.3.</span> <span class="nav-text">服务器发送事件(Server-Sent Event)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket连接流程"><span class="nav-number">1.4.</span> <span class="nav-text">WebSocket连接流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WebSocket中子协议支持"><span class="nav-number">1.5.</span> <span class="nav-text">WebSocket中子协议支持</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#STOMP协议-其实可以不嵌入"><span class="nav-number">1.6.</span> <span class="nav-text">STOMP协议(其实可以不嵌入)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#STOMP与WebSocket的关系"><span class="nav-number">1.6.1.</span> <span class="nav-text">STOMP与WebSocket的关系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用STOMP作为WebSocket子协议的好处"><span class="nav-number">1.6.2.</span> <span class="nav-text">使用STOMP作为WebSocket子协议的好处</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Charley_Young</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.1.0</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: 'fbacd809b0f5f2803304',
+    clientSecret: '68c17eb0caebd4af73d39cec8a87daa15e79c9ae',
+    repo: 'charleyyoung.github.io',
+    owner: 'CharleyYoung',
+    admin: ['CharleyYoung'],
+    id: md5(location.pathname),
+    
+      language: 'zh-CN',
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
+
+  
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
